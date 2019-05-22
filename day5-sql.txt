@@ -1,0 +1,57 @@
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Wed May 22 06:20:46 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Wed May 22 2019 06:20:57 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> set linesize 400;
+SQL> select * from subcategory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> select * from subcategory where sid in(select SID from products where pid in(select PID from sales group by pid having count(*)=(select max(count(*))from sales group by pid)));
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1         20 FAST FOOD           
+         1         10 DRINKS              
+
+
+SQL> select description from subcategory where sid in(select SID from products where pid in(select PID from sales group by pid having count(*)=(select max(count(*))from sales group by pid)));
+DESCRIPTION
+--------------------
+FAST FOOD           
+DRINKS              
+
+SQL> 
+

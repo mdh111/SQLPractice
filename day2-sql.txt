@@ -1,0 +1,1168 @@
+SELECTING THE TOP 3 MARKS AND ORDERING BY MARKS
+********
+********
+select * from school where 
+marks>=(select max(marks) from school where 
+marks<(select max(marks) from school where 
+marks<(select max(marks) from school))) 
+order by marks desc;
+********
+********
+
+
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Fri May 17 04:06:33 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Fri May 17 2019 04:06:46 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> select * from asda;
+
+PRODUCT              PRICE_PURCHASED PRICE_SOLD QTY_PURCHASED   QTY_SOLD
+-------------------- --------------- ---------- ------------- ----------
+orange                            .5        .75            20          5
+apple                             .2         .5            50         20
+banana                            .1         .2           100         30
+
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        100 Steven               King                      
+SKING                     515.123.4567         17-JUN-87 AD_PRES         24000 
+NULL           NULL                  90
+
+        101 Neena                Kochhar                   
+NKOCHHAR                  515.123.4568         21-SEP-89 AD_VP           17000 
+NULL                  100            90
+
+        102 Lex                  De Haan                   
+LDEHAAN                   515.123.4569         13-JAN-93 AD_VP           17000 
+NULL                  100            90
+
+        103 Alexander            Hunold                    
+AHUNOLD                   590.423.4567         03-JAN-90 IT_PROG          9000 
+NULL                  102            60
+
+        104 Bruce                Ernst                     
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+BERNST                    590.423.4568         21-MAY-91 IT_PROG          6000 
+NULL                  103            60
+
+        105 David                Austin                    
+DAUSTIN                   590.423.4569         25-JUN-97 IT_PROG          4800 
+NULL                  103            60
+
+        106 Valli                Pataballa                 
+VPATABAL                  590.423.4560         05-FEB-98 IT_PROG          4800 
+NULL                  103            60
+
+        107 Diana                Lorentz                   
+DLORENTZ                  590.423.5567         07-FEB-99 IT_PROG          4200 
+NULL                  103            60
+
+        108 Nancy                Greenberg                 
+NGREENBE                  515.124.4569         17-AUG-94 FI_MGR          12000 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+NULL                  101           100
+
+        109 Daniel               Faviet                    
+DFAVIET                   515.124.4169         16-AUG-94 FI_ACCOUNT       9000 
+NULL                  108           100
+
+        110 John                 Chen                      
+JCHEN                     515.124.4269         28-SEP-97 FI_ACCOUNT       8200 
+NULL                  108           100
+
+        111 Ismael               Sciarra                   
+ISCIARRA                  515.124.4369         30-SEP-97 FI_ACCOUNT       7700 
+NULL                  108           100
+
+        112 Jose Manuel          Urman                     
+JMURMAN                   515.124.4469         07-MAR-98 FI_ACCOUNT       7800 
+NULL                  108           100
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        113 Luis                 Popp                      
+LPOPP                     515.124.4567         07-DEC-99 FI_ACCOUNT       6900 
+NULL                  108           100
+
+        114 Den                  Raphaely                  
+DRAPHEAL                  515.127.4561         07-DEC-94 PU_MAN          11000 
+NULL                  100            30
+
+        115 Alexander            Khoo                      
+AKHOO                     515.127.4562         18-MAY-95 PU_CLERK         3100 
+NULL                  114            30
+
+        116 Shelli               Baida                     
+SBAIDA                    515.127.4563         24-DEC-97 PU_CLERK         2900 
+NULL                  114            30
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        117 Sigal                Tobias                    
+STOBIAS                   515.127.4564         24-JUL-97 PU_CLERK         2800 
+NULL                  114            30
+
+        118 Guy                  Himuro                    
+GHIMURO                   515.127.4565         15-NOV-98 PU_CLERK         2600 
+NULL                  114            30
+
+        119 Karen                Colmenares                
+KCOLMENA                  515.127.4566         10-AUG-99 PU_CLERK         2500 
+NULL                  114            30
+
+        120 Matthew              Weiss                     
+MWEISS                    650.123.1234         18-JUL-96 ST_MAN           8000 
+NULL                  100            50
+
+        121 Adam                 Fripp                     
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+AFRIPP                    650.123.2234         10-APR-97 ST_MAN           8200 
+NULL                  100            50
+
+        122 Payam                Kaufling                  
+PKAUFLIN                  650.123.3234         01-MAY-95 ST_MAN           7900 
+NULL                  100            50
+
+        123 Shanta               Vollman                   
+SVOLLMAN                  650.123.4234         10-OCT-97 ST_MAN           6500 
+NULL                  100            50
+
+        124 Kevin                Mourgos                   
+KMOURGOS                  650.123.5234         16-NOV-99 ST_MAN           5800 
+NULL                  100            50
+
+        125 Julia                Nayer                     
+JNAYER                    650.124.1214         16-JUL-97 ST_CLERK         3200 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+NULL                  120            50
+
+        126 Irene                Mikkilineni               
+IMIKKILI                  650.124.1224         28-SEP-98 ST_CLERK         2700 
+NULL                  120            50
+
+        127 James                Landry                    
+JLANDRY                   650.124.1334         14-JAN-99 ST_CLERK         2400 
+NULL                  120            50
+
+        128 Steven               Markle                    
+SMARKLE                   650.124.1434         08-MAR-00 ST_CLERK         2200 
+NULL                  120            50
+
+        129 Laura                Bissot                    
+LBISSOT                   650.124.5234         20-AUG-97 ST_CLERK         3300 
+NULL                  121            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        130 Mozhe                Atkinson                  
+MATKINSO                  650.124.6234         30-OCT-97 ST_CLERK         2800 
+NULL                  121            50
+
+        131 James                Marlow                    
+JAMRLOW                   650.124.7234         16-FEB-97 ST_CLERK         2500 
+NULL                  121            50
+
+        132 TJ                   Olson                     
+TJOLSON                   650.124.8234         10-APR-99 ST_CLERK         2100 
+NULL                  121            50
+
+        133 Jason                Mallin                    
+JMALLIN                   650.127.1934         14-JUN-96 ST_CLERK         3300 
+NULL                  122            50
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        134 Michael              Rogers                    
+MROGERS                   650.127.1834         26-AUG-98 ST_CLERK         2900 
+NULL                  122            50
+
+        135 Ki                   Gee                       
+KGEE                      650.127.1734         12-DEC-99 ST_CLERK         2400 
+NULL                  122            50
+
+        136 Hazel                Philtanker                
+HPHILTAN                  650.127.1634         06-FEB-00 ST_CLERK         2200 
+NULL                  122            50
+
+        137 Renske               Ladwig                    
+RLADWIG                   650.121.1234         14-JUL-95 ST_CLERK         3600 
+NULL                  123            50
+
+        138 Stephen              Stiles                    
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+SSTILES                   650.121.2034         26-OCT-97 ST_CLERK         3200 
+NULL                  123            50
+
+        139 John                 Seo                       
+JSEO                      650.121.2019         12-FEB-98 ST_CLERK         2700 
+NULL                  123            50
+
+        140 Joshua               Patel                     
+JPATEL                    650.121.1834         06-APR-98 ST_CLERK         2500 
+NULL                  123            50
+
+        141 Trenna               Rajs                      
+TRAJS                     650.121.8009         17-OCT-95 ST_CLERK         3500 
+NULL                  124            50
+
+        142 Curtis               Davies                    
+CDAVIES                   650.121.2994         29-JAN-97 ST_CLERK         3100 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+NULL                  124            50
+
+        143 Randall              Matos                     
+RMATOS                    650.121.2874         15-MAR-98 ST_CLERK         2600 
+NULL                  124            50
+
+        144 Peter                Vargas                    
+PVARGAS                   650.121.2004         09-JUL-98 ST_CLERK         2500 
+NULL                  124            50
+
+        145 John                 Russell                   
+JRUSSEL                   011.44.1344.429268   01-OCT-96 SA_MAN          14000 
+            .4        100            80
+
+        146 Karen                Partners                  
+KPARTNER                  011.44.1344.467268   05-JAN-97 SA_MAN          13500 
+            .3        100            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        147 Alberto              Errazuriz                 
+AERRAZUR                  011.44.1344.429278   10-MAR-97 SA_MAN          12000 
+            .3        100            80
+
+        148 Gerald               Cambrault                 
+GCAMBRAU                  011.44.1344.619268   15-OCT-99 SA_MAN          11000 
+            .3        100            80
+
+        149 Eleni                Zlotkey                   
+EZLOTKEY                  011.44.1344.429018   29-JAN-00 SA_MAN          10500 
+            .2        100            80
+
+        150 Peter                Tucker                    
+PTUCKER                   011.44.1344.129268   30-JAN-97 SA_REP          10000 
+            .3        145            80
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        151 David                Bernstein                 
+DBERNSTE                  011.44.1344.345268   24-MAR-97 SA_REP           9500 
+           .25        145            80
+
+        152 Peter                Hall                      
+PHALL                     011.44.1344.478968   20-AUG-97 SA_REP           9000 
+           .25        145            80
+
+        153 Christopher          Olsen                     
+COLSEN                    011.44.1344.498718   30-MAR-98 SA_REP           8000 
+            .2        145            80
+
+        154 Nanette              Cambrault                 
+NCAMBRAU                  011.44.1344.987668   09-DEC-98 SA_REP           7500 
+            .2        145            80
+
+        155 Oliver               Tuvault                   
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+OTUVAULT                  011.44.1344.486508   23-NOV-99 SA_REP           7000 
+           .15        145            80
+
+        156 Janette              King                      
+JKING                     011.44.1345.429268   30-JAN-96 SA_REP          10000 
+           .35        146            80
+
+        157 Patrick              Sully                     
+PSULLY                    011.44.1345.929268   04-MAR-96 SA_REP           9500 
+           .35        146            80
+
+        158 Allan                McEwen                    
+AMCEWEN                   011.44.1345.829268   01-AUG-96 SA_REP           9000 
+           .35        146            80
+
+        159 Lindsey              Smith                     
+LSMITH                    011.44.1345.729268   10-MAR-97 SA_REP           8000 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+            .3        146            80
+
+        160 Louise               Doran                     
+LDORAN                    011.44.1345.629268   15-DEC-97 SA_REP           7500 
+            .3        146            80
+
+        161 Sarath               Sewall                    
+SSEWALL                   011.44.1345.529268   03-NOV-98 SA_REP           7000 
+           .25        146            80
+
+        162 Clara                Vishney                   
+CVISHNEY                  011.44.1346.129268   11-NOV-97 SA_REP          10500 
+           .25        147            80
+
+        163 Danielle             Greene                    
+DGREENE                   011.44.1346.229268   19-MAR-99 SA_REP           9500 
+           .15        147            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        164 Mattea               Marvins                   
+MMARVINS                  011.44.1346.329268   24-JAN-00 SA_REP           7200 
+            .1        147            80
+
+        165 David                Lee                       
+DLEE                      011.44.1346.529268   23-FEB-00 SA_REP           6800 
+            .1        147            80
+
+        166 Sundar               Ande                      
+SANDE                     011.44.1346.629268   24-MAR-00 SA_REP           6400 
+            .1        147            80
+
+        167 Amit                 Banda                     
+ABANDA                    011.44.1346.729268   21-APR-00 SA_REP           6200 
+            .1        147            80
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        168 Lisa                 Ozer                      
+LOZER                     011.44.1343.929268   11-MAR-97 SA_REP          11500 
+           .25        148            80
+
+        169 Harrison             Bloom                     
+HBLOOM                    011.44.1343.829268   23-MAR-98 SA_REP          10000 
+            .2        148            80
+
+        170 Tayler               Fox                       
+TFOX                      011.44.1343.729268   24-JAN-98 SA_REP           9600 
+            .2        148            80
+
+        171 William              Smith                     
+WSMITH                    011.44.1343.629268   23-FEB-99 SA_REP           7400 
+           .15        148            80
+
+        172 Elizabeth            Bates                     
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+EBATES                    011.44.1343.529268   24-MAR-99 SA_REP           7300 
+           .15        148            80
+
+        173 Sundita              Kumar                     
+SKUMAR                    011.44.1343.329268   21-APR-00 SA_REP           6100 
+            .1        148            80
+
+        174 Ellen                Abel                      
+EABEL                     011.44.1644.429267   11-MAY-96 SA_REP          11000 
+            .3        149            80
+
+        175 Alyssa               Hutton                    
+AHUTTON                   011.44.1644.429266   19-MAR-97 SA_REP           8800 
+           .25        149            80
+
+        176 Jonathon             Taylor                    
+JTAYLOR                   011.44.1644.429265   24-MAR-98 SA_REP           8600 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+            .2        149            80
+
+        177 Jack                 Livingston                
+JLIVINGS                  011.44.1644.429264   23-APR-98 SA_REP           8400 
+            .2        149            80
+
+        178 Kimberely            Grant                     
+KGRANT                    011.44.1644.429263   24-MAY-99 SA_REP           7000 
+           .15        149 NULL         
+
+        179 Charles              Johnson                   
+CJOHNSON                  011.44.1644.429262   04-JAN-00 SA_REP           6200 
+            .1        149            80
+
+        180 Winston              Taylor                    
+WTAYLOR                   650.507.9876         24-JAN-98 SH_CLERK         3200 
+NULL                  120            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        181 Jean                 Fleaur                    
+JFLEAUR                   650.507.9877         23-FEB-98 SH_CLERK         3100 
+NULL                  120            50
+
+        182 Martha               Sullivan                  
+MSULLIVA                  650.507.9878         21-JUN-99 SH_CLERK         2500 
+NULL                  120            50
+
+        183 Girard               Geoni                     
+GGEONI                    650.507.9879         03-FEB-00 SH_CLERK         2800 
+NULL                  120            50
+
+        184 Nandita              Sarchand                  
+NSARCHAN                  650.509.1876         27-JAN-96 SH_CLERK         4200 
+NULL                  121            50
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        185 Alexis               Bull                      
+ABULL                     650.509.2876         20-FEB-97 SH_CLERK         4100 
+NULL                  121            50
+
+        186 Julia                Dellinger                 
+JDELLING                  650.509.3876         24-JUN-98 SH_CLERK         3400 
+NULL                  121            50
+
+        187 Anthony              Cabrio                    
+ACABRIO                   650.509.4876         07-FEB-99 SH_CLERK         3000 
+NULL                  121            50
+
+        188 Kelly                Chung                     
+KCHUNG                    650.505.1876         14-JUN-97 SH_CLERK         3800 
+NULL                  122            50
+
+        189 Jennifer             Dilly                     
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+JDILLY                    650.505.2876         13-AUG-97 SH_CLERK         3600 
+NULL                  122            50
+
+        190 Timothy              Gates                     
+TGATES                    650.505.3876         11-JUL-98 SH_CLERK         2900 
+NULL                  122            50
+
+        191 Randall              Perkins                   
+RPERKINS                  650.505.4876         19-DEC-99 SH_CLERK         2500 
+NULL                  122            50
+
+        192 Sarah                Bell                      
+SBELL                     650.501.1876         04-FEB-96 SH_CLERK         4000 
+NULL                  123            50
+
+        193 Britney              Everett                   
+BEVERETT                  650.501.2876         03-MAR-97 SH_CLERK         3900 
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+NULL                  123            50
+
+        194 Samuel               McCain                    
+SMCCAIN                   650.501.3876         01-JUL-98 SH_CLERK         3200 
+NULL                  123            50
+
+        195 Vance                Jones                     
+VJONES                    650.501.4876         17-MAR-99 SH_CLERK         2800 
+NULL                  123            50
+
+        196 Alana                Walsh                     
+AWALSH                    650.507.9811         24-APR-98 SH_CLERK         3100 
+NULL                  124            50
+
+        197 Kevin                Feeney                    
+KFEENEY                   650.507.9822         23-MAY-98 SH_CLERK         3000 
+NULL                  124            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        198 Donald               OConnell                  
+DOCONNEL                  650.507.9833         21-JUN-99 SH_CLERK         2600 
+NULL                  124            50
+
+        199 Douglas              Grant                     
+DGRANT                    650.507.9844         13-JAN-00 SH_CLERK         2600 
+NULL                  124            50
+
+        200 Jennifer             Whalen                    
+JWHALEN                   515.123.4444         17-SEP-87 AD_ASST          4400 
+NULL                  101            10
+
+        201 Michael              Hartstein                 
+MHARTSTE                  515.123.5555         17-FEB-96 MK_MAN          13000 
+NULL                  100            20
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        202 Pat                  Fay                       
+PFAY                      603.123.6666         17-AUG-97 MK_REP           6000 
+NULL                  201            20
+
+        203 Susan                Mavris                    
+SMAVRIS                   515.123.7777         07-JUN-94 HR_REP           6500 
+NULL                  101            40
+
+        204 Hermann              Baer                      
+HBAER                     515.123.8888         07-JUN-94 PR_REP          10000 
+NULL                  101            70
+
+        205 Shelley              Higgins                   
+SHIGGINS                  515.123.8080         07-JUN-94 AC_MGR          12000 
+NULL                  101           110
+
+        206 William              Gietz                     
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+WGIETZ                    515.123.8181         07-JUN-94 AC_ACCOUNT       8300 
+NULL                  205           110
+
+
+107 rows selected. 
+
+SQL> set linesize 400
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven               King                      SKING                     515.123.4567         17-JUN-87 AD_PRES         24000 NULL           NULL                  90
+        101 Neena                Kochhar                   NKOCHHAR                  515.123.4568         21-SEP-89 AD_VP           17000 NULL                  100            90
+        102 Lex                  De Haan                   LDEHAAN                   515.123.4569         13-JAN-93 AD_VP           17000 NULL                  100            90
+        103 Alexander            Hunold                    AHUNOLD                   590.423.4567         03-JAN-90 IT_PROG          9000 NULL                  102            60
+        104 Bruce                Ernst                     BERNST                    590.423.4568         21-MAY-91 IT_PROG          6000 NULL                  103            60
+        105 David                Austin                    DAUSTIN                   590.423.4569         25-JUN-97 IT_PROG          4800 NULL                  103            60
+        106 Valli                Pataballa                 VPATABAL                  590.423.4560         05-FEB-98 IT_PROG          4800 NULL                  103            60
+        107 Diana                Lorentz                   DLORENTZ                  590.423.5567         07-FEB-99 IT_PROG          4200 NULL                  103            60
+        108 Nancy                Greenberg                 NGREENBE                  515.124.4569         17-AUG-94 FI_MGR          12000 NULL                  101           100
+        109 Daniel               Faviet                    DFAVIET                   515.124.4169         16-AUG-94 FI_ACCOUNT       9000 NULL                  108           100
+        110 John                 Chen                      JCHEN                     515.124.4269         28-SEP-97 FI_ACCOUNT       8200 NULL                  108           100
+        111 Ismael               Sciarra                   ISCIARRA                  515.124.4369         30-SEP-97 FI_ACCOUNT       7700 NULL                  108           100
+        112 Jose Manuel          Urman                     JMURMAN                   515.124.4469         07-MAR-98 FI_ACCOUNT       7800 NULL                  108           100
+        113 Luis                 Popp                      LPOPP                     515.124.4567         07-DEC-99 FI_ACCOUNT       6900 NULL                  108           100
+        114 Den                  Raphaely                  DRAPHEAL                  515.127.4561         07-DEC-94 PU_MAN          11000 NULL                  100            30
+        115 Alexander            Khoo                      AKHOO                     515.127.4562         18-MAY-95 PU_CLERK         3100 NULL                  114            30
+        116 Shelli               Baida                     SBAIDA                    515.127.4563         24-DEC-97 PU_CLERK         2900 NULL                  114            30
+        117 Sigal                Tobias                    STOBIAS                   515.127.4564         24-JUL-97 PU_CLERK         2800 NULL                  114            30
+        118 Guy                  Himuro                    GHIMURO                   515.127.4565         15-NOV-98 PU_CLERK         2600 NULL                  114            30
+        119 Karen                Colmenares                KCOLMENA                  515.127.4566         10-AUG-99 PU_CLERK         2500 NULL                  114            30
+        120 Matthew              Weiss                     MWEISS                    650.123.1234         18-JUL-96 ST_MAN           8000 NULL                  100            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        121 Adam                 Fripp                     AFRIPP                    650.123.2234         10-APR-97 ST_MAN           8200 NULL                  100            50
+        122 Payam                Kaufling                  PKAUFLIN                  650.123.3234         01-MAY-95 ST_MAN           7900 NULL                  100            50
+        123 Shanta               Vollman                   SVOLLMAN                  650.123.4234         10-OCT-97 ST_MAN           6500 NULL                  100            50
+        124 Kevin                Mourgos                   KMOURGOS                  650.123.5234         16-NOV-99 ST_MAN           5800 NULL                  100            50
+        125 Julia                Nayer                     JNAYER                    650.124.1214         16-JUL-97 ST_CLERK         3200 NULL                  120            50
+        126 Irene                Mikkilineni               IMIKKILI                  650.124.1224         28-SEP-98 ST_CLERK         2700 NULL                  120            50
+        127 James                Landry                    JLANDRY                   650.124.1334         14-JAN-99 ST_CLERK         2400 NULL                  120            50
+        128 Steven               Markle                    SMARKLE                   650.124.1434         08-MAR-00 ST_CLERK         2200 NULL                  120            50
+        129 Laura                Bissot                    LBISSOT                   650.124.5234         20-AUG-97 ST_CLERK         3300 NULL                  121            50
+        130 Mozhe                Atkinson                  MATKINSO                  650.124.6234         30-OCT-97 ST_CLERK         2800 NULL                  121            50
+        131 James                Marlow                    JAMRLOW                   650.124.7234         16-FEB-97 ST_CLERK         2500 NULL                  121            50
+        132 TJ                   Olson                     TJOLSON                   650.124.8234         10-APR-99 ST_CLERK         2100 NULL                  121            50
+        133 Jason                Mallin                    JMALLIN                   650.127.1934         14-JUN-96 ST_CLERK         3300 NULL                  122            50
+        134 Michael              Rogers                    MROGERS                   650.127.1834         26-AUG-98 ST_CLERK         2900 NULL                  122            50
+        135 Ki                   Gee                       KGEE                      650.127.1734         12-DEC-99 ST_CLERK         2400 NULL                  122            50
+        136 Hazel                Philtanker                HPHILTAN                  650.127.1634         06-FEB-00 ST_CLERK         2200 NULL                  122            50
+        137 Renske               Ladwig                    RLADWIG                   650.121.1234         14-JUL-95 ST_CLERK         3600 NULL                  123            50
+        138 Stephen              Stiles                    SSTILES                   650.121.2034         26-OCT-97 ST_CLERK         3200 NULL                  123            50
+        139 John                 Seo                       JSEO                      650.121.2019         12-FEB-98 ST_CLERK         2700 NULL                  123            50
+        140 Joshua               Patel                     JPATEL                    650.121.1834         06-APR-98 ST_CLERK         2500 NULL                  123            50
+        141 Trenna               Rajs                      TRAJS                     650.121.8009         17-OCT-95 ST_CLERK         3500 NULL                  124            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        142 Curtis               Davies                    CDAVIES                   650.121.2994         29-JAN-97 ST_CLERK         3100 NULL                  124            50
+        143 Randall              Matos                     RMATOS                    650.121.2874         15-MAR-98 ST_CLERK         2600 NULL                  124            50
+        144 Peter                Vargas                    PVARGAS                   650.121.2004         09-JUL-98 ST_CLERK         2500 NULL                  124            50
+        145 John                 Russell                   JRUSSEL                   011.44.1344.429268   01-OCT-96 SA_MAN          14000             .4        100            80
+        146 Karen                Partners                  KPARTNER                  011.44.1344.467268   05-JAN-97 SA_MAN          13500             .3        100            80
+        147 Alberto              Errazuriz                 AERRAZUR                  011.44.1344.429278   10-MAR-97 SA_MAN          12000             .3        100            80
+        148 Gerald               Cambrault                 GCAMBRAU                  011.44.1344.619268   15-OCT-99 SA_MAN          11000             .3        100            80
+        149 Eleni                Zlotkey                   EZLOTKEY                  011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        150 Peter                Tucker                    PTUCKER                   011.44.1344.129268   30-JAN-97 SA_REP          10000             .3        145            80
+        151 David                Bernstein                 DBERNSTE                  011.44.1344.345268   24-MAR-97 SA_REP           9500            .25        145            80
+        152 Peter                Hall                      PHALL                     011.44.1344.478968   20-AUG-97 SA_REP           9000            .25        145            80
+        153 Christopher          Olsen                     COLSEN                    011.44.1344.498718   30-MAR-98 SA_REP           8000             .2        145            80
+        154 Nanette              Cambrault                 NCAMBRAU                  011.44.1344.987668   09-DEC-98 SA_REP           7500             .2        145            80
+        155 Oliver               Tuvault                   OTUVAULT                  011.44.1344.486508   23-NOV-99 SA_REP           7000            .15        145            80
+        156 Janette              King                      JKING                     011.44.1345.429268   30-JAN-96 SA_REP          10000            .35        146            80
+        157 Patrick              Sully                     PSULLY                    011.44.1345.929268   04-MAR-96 SA_REP           9500            .35        146            80
+        158 Allan                McEwen                    AMCEWEN                   011.44.1345.829268   01-AUG-96 SA_REP           9000            .35        146            80
+        159 Lindsey              Smith                     LSMITH                    011.44.1345.729268   10-MAR-97 SA_REP           8000             .3        146            80
+        160 Louise               Doran                     LDORAN                    011.44.1345.629268   15-DEC-97 SA_REP           7500             .3        146            80
+        161 Sarath               Sewall                    SSEWALL                   011.44.1345.529268   03-NOV-98 SA_REP           7000            .25        146            80
+        162 Clara                Vishney                   CVISHNEY                  011.44.1346.129268   11-NOV-97 SA_REP          10500            .25        147            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        163 Danielle             Greene                    DGREENE                   011.44.1346.229268   19-MAR-99 SA_REP           9500            .15        147            80
+        164 Mattea               Marvins                   MMARVINS                  011.44.1346.329268   24-JAN-00 SA_REP           7200             .1        147            80
+        165 David                Lee                       DLEE                      011.44.1346.529268   23-FEB-00 SA_REP           6800             .1        147            80
+        166 Sundar               Ande                      SANDE                     011.44.1346.629268   24-MAR-00 SA_REP           6400             .1        147            80
+        167 Amit                 Banda                     ABANDA                    011.44.1346.729268   21-APR-00 SA_REP           6200             .1        147            80
+        168 Lisa                 Ozer                      LOZER                     011.44.1343.929268   11-MAR-97 SA_REP          11500            .25        148            80
+        169 Harrison             Bloom                     HBLOOM                    011.44.1343.829268   23-MAR-98 SA_REP          10000             .2        148            80
+        170 Tayler               Fox                       TFOX                      011.44.1343.729268   24-JAN-98 SA_REP           9600             .2        148            80
+        171 William              Smith                     WSMITH                    011.44.1343.629268   23-FEB-99 SA_REP           7400            .15        148            80
+        172 Elizabeth            Bates                     EBATES                    011.44.1343.529268   24-MAR-99 SA_REP           7300            .15        148            80
+        173 Sundita              Kumar                     SKUMAR                    011.44.1343.329268   21-APR-00 SA_REP           6100             .1        148            80
+        174 Ellen                Abel                      EABEL                     011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        175 Alyssa               Hutton                    AHUTTON                   011.44.1644.429266   19-MAR-97 SA_REP           8800            .25        149            80
+        176 Jonathon             Taylor                    JTAYLOR                   011.44.1644.429265   24-MAR-98 SA_REP           8600             .2        149            80
+        177 Jack                 Livingston                JLIVINGS                  011.44.1644.429264   23-APR-98 SA_REP           8400             .2        149            80
+        178 Kimberely            Grant                     KGRANT                    011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149 NULL         
+        179 Charles              Johnson                   CJOHNSON                  011.44.1644.429262   04-JAN-00 SA_REP           6200             .1        149            80
+        180 Winston              Taylor                    WTAYLOR                   650.507.9876         24-JAN-98 SH_CLERK         3200 NULL                  120            50
+        181 Jean                 Fleaur                    JFLEAUR                   650.507.9877         23-FEB-98 SH_CLERK         3100 NULL                  120            50
+        182 Martha               Sullivan                  MSULLIVA                  650.507.9878         21-JUN-99 SH_CLERK         2500 NULL                  120            50
+        183 Girard               Geoni                     GGEONI                    650.507.9879         03-FEB-00 SH_CLERK         2800 NULL                  120            50
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        184 Nandita              Sarchand                  NSARCHAN                  650.509.1876         27-JAN-96 SH_CLERK         4200 NULL                  121            50
+        185 Alexis               Bull                      ABULL                     650.509.2876         20-FEB-97 SH_CLERK         4100 NULL                  121            50
+        186 Julia                Dellinger                 JDELLING                  650.509.3876         24-JUN-98 SH_CLERK         3400 NULL                  121            50
+        187 Anthony              Cabrio                    ACABRIO                   650.509.4876         07-FEB-99 SH_CLERK         3000 NULL                  121            50
+        188 Kelly                Chung                     KCHUNG                    650.505.1876         14-JUN-97 SH_CLERK         3800 NULL                  122            50
+        189 Jennifer             Dilly                     JDILLY                    650.505.2876         13-AUG-97 SH_CLERK         3600 NULL                  122            50
+        190 Timothy              Gates                     TGATES                    650.505.3876         11-JUL-98 SH_CLERK         2900 NULL                  122            50
+        191 Randall              Perkins                   RPERKINS                  650.505.4876         19-DEC-99 SH_CLERK         2500 NULL                  122            50
+        192 Sarah                Bell                      SBELL                     650.501.1876         04-FEB-96 SH_CLERK         4000 NULL                  123            50
+        193 Britney              Everett                   BEVERETT                  650.501.2876         03-MAR-97 SH_CLERK         3900 NULL                  123            50
+        194 Samuel               McCain                    SMCCAIN                   650.501.3876         01-JUL-98 SH_CLERK         3200 NULL                  123            50
+        195 Vance                Jones                     VJONES                    650.501.4876         17-MAR-99 SH_CLERK         2800 NULL                  123            50
+        196 Alana                Walsh                     AWALSH                    650.507.9811         24-APR-98 SH_CLERK         3100 NULL                  124            50
+        197 Kevin                Feeney                    KFEENEY                   650.507.9822         23-MAY-98 SH_CLERK         3000 NULL                  124            50
+        198 Donald               OConnell                  DOCONNEL                  650.507.9833         21-JUN-99 SH_CLERK         2600 NULL                  124            50
+        199 Douglas              Grant                     DGRANT                    650.507.9844         13-JAN-00 SH_CLERK         2600 NULL                  124            50
+        200 Jennifer             Whalen                    JWHALEN                   515.123.4444         17-SEP-87 AD_ASST          4400 NULL                  101            10
+        201 Michael              Hartstein                 MHARTSTE                  515.123.5555         17-FEB-96 MK_MAN          13000 NULL                  100            20
+        202 Pat                  Fay                       PFAY                      603.123.6666         17-AUG-97 MK_REP           6000 NULL                  201            20
+        203 Susan                Mavris                    SMAVRIS                   515.123.7777         07-JUN-94 HR_REP           6500 NULL                  101            40
+        204 Hermann              Baer                      HBAER                     515.123.8888         07-JUN-94 PR_REP          10000 NULL                  101            70
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        205 Shelley              Higgins                   SHIGGINS                  515.123.8080         07-JUN-94 AC_MGR          12000 NULL                  101           110
+        206 William              Gietz                     WGIETZ                    515.123.8181         07-JUN-94 AC_ACCOUNT       8300 NULL                  205           110
+
+107 rows selected. 
+
+SQL> select sum(salary) as salary from employees;
+
+    SALARY
+----------
+    691400
+
+SQL> select max(salary) where maager_id=121 from employees;
+
+Error starting at line : 1 in command -
+select max(salary) where maager_id=121 from employees
+Error at Command Line : 1 Column : 20
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+00923. 00000 -  "FROM keyword not found where expected"
+*Cause:    
+
+
+SQL> select max(salary) from employess where maager_id=121;
+Error starting at line : 1 in command -
+select max(salary) from employess where maager_id=121
+Error at Command Line : 1 Column : 25
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select max(salary) from employess where manager_id=121;
+Error starting at line : 1 in command -
+select max(salary) from employess where manager_id=121
+Error at Command Line : 1 Column : 25
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+
+
+SQL> select max(salary) from employees where manager_id=121;
+MAX(SALARY)
+-----------
+       4200
+
+
+SQL> select first_name,last_name,max(salary) from employees where manager_id=121;
+Error starting at line : 1 in command -
+select first_name,last_name,max(salary) from employees where manager_id=121
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00937: not a single-group group function
+00937. 00000 -  "not a single-group group function"
+*Cause:    
+
+
+SQL> select first_name,last_name,max(salary) from employees where manager_id=121;
+
+
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+
+
+SQL> select max(salary),first_name from employees where manager_id=121;
+Error starting at line : 1 in command -
+select max(salary),first_name from employees where manager_id=121
+Error at Command Line : 1 Column : 20
+Error report -
+SQL Error: ORA-00937: not a single-group group function
+00937. 00000 -  "not a single-group group function"
+*Cause:    
+
+
+SQL> select max(salary) as max_salary,count(employee_id) as employee_count from employees where manager_id=121;
+MAX_SALARY EMPLOYEE_COUNT
+---------- --------------
+      4200              8
+
+
+SQL> select max(salary) as max_salary , count(employee_id) as employee_count from employees where manager_id=121;
+MAX_SALARY EMPLOYEE_COUNT
+---------- --------------
+      4200              8
+
+
+SQL> select sum(salary) as total_salary  max(salary) as max_salary , count(employee_id) as employee_count from employees where manager_id=121;
+Error starting at line : 1 in command -
+select sum(salary) as total_salary  max(salary) as max_salary , count(employee_id) as employee_count from employees where manager_id=121
+Error at Command Line : 1 Column : 37
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+00923. 00000 -  "FROM keyword not found where expected"
+*Cause:    
+
+
+SQL> select sum(salary) as total_salary , max(salary) as max_salary , count(employee_id) as employee_count from employees where manager_id=121;
+TOTAL_SALARY MAX_SALARY EMPLOYEE_COUNT
+------------ ---------- --------------
+       25400       4200              8
+
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+SQL> select * from asda;
+
+PRODUCT              PRICE_PURCHASED PRICE_SOLD QTY_PURCHASED   QTY_SOLD
+-------------------- --------------- ---------- ------------- ----------
+orange                            .5        .75            20          5
+apple                             .2         .5            50         20
+banana                            .1         .2           100         30
+
+
+SQL> select * from school;
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        23 smith                                  24
+        56 jones                                  68
+        45 bloggs                                 43
+        32 smith                                 100
+
+SQL> select max(marks) as "maximum mark" from employees;
+
+Error starting at line : 1 in command -
+select max(marks) as "maximum mark" from employees
+Error at Command Line : 1 Column : 12
+Error report -
+SQL Error: ORA-00904: "MARKS": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select max(marks) as "maximum mark" from school;
+maximum mark
+------------
+         100
+
+
+SQL> select sum(salary) as total_salary , max(salary) as max_salary , count(employee_id) as employee_count from employees where manager_id=121;
+
+TOTAL_SALARY MAX_SALARY EMPLOYEE_COUNT
+------------ ---------- --------------
+       25400       4200              8
+
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+SQL> select sum(salary*20/100) as "total tax on salary from employees;
+
+Error starting at line : 1 in command -
+select sum(salary*20/100) as "total tax on salary from employees
+Error at Command Line : 1 Column : 30
+Error report -
+SQL Error: ORA-01740: missing double quote in identifier
+01740. 00000 -  "missing double quote in identifier"
+*Cause:    
+
+
+SQL> select sum(salary*20/100) as "total tax on salary" from employees;
+total tax on salary
+-------------------
+             138280
+
+
+SQL> select sum(salary) as "total salary" ,  sum(salary*20/100) as "total tax on salary" from employees;
+total salary total tax on salary
+------------ -------------------
+      691400              138280
+
+
+SQL> select sum(salary) as "total salary" ,  sum(salary*.2) as "total tax on salary" from employees;
+total salary total tax on salary
+------------ -------------------
+      691400              138280
+
+
+SQL> select sum(salary) as "total salary" ,  sum(salary*.2) as "total tax on salary" from employees where department_id=123;
+total salary total tax on salary
+------------ -------------------
+NULL         NULL               
+
+
+SQL> select sum(salary) as "total salary" ,  sum(salary*.2) as "total tax on salary" from employees where department_id=121;
+total salary total tax on salary
+------------ -------------------
+NULL         NULL               
+
+
+SQL> select sum(salary) as "total salary" ,  sum(salary*.2) as "total tax on salary" from employees where department_id=80;
+total salary total tax on salary
+------------ -------------------
+      304500               60900
+
+
+SQL> select * from cat;
+TABLE_NAME                                                                                                                       TABLE_TYPE 
+-------------------------------------------------------------------------------------------------------------------------------- -----------
+REGIONS                                                                                                                          TABLE      
+COUNTRIES                                                                                                                        TABLE      
+LOCATIONS                                                                                                                        TABLE      
+LOCATIONS_SEQ                                                                                                                    SEQUENCE   
+DEPARTMENTS                                                                                                                      TABLE      
+DEPARTMENTS_SEQ                                                                                                                  SEQUENCE   
+JOBS                                                                                                                             TABLE      
+EMPLOYEES                                                                                                                        TABLE      
+EMPLOYEES_SEQ                                                                                                                    SEQUENCE   
+JOB_HISTORY                                                                                                                      TABLE      
+EMP_DETAILS_VIEW                                                                                                                 VIEW       
+SCHOOL                                                                                                                           TABLE      
+TESCO                                                                                                                            TABLE      
+ASDA                                                                                                                             TABLE      
+CONSULTANTS                                                                                                                      TABLE      
+
+15 rows selected. 
+
+SQL> select * from tesco;
+
+PRODUCT                                                 PRICE        QTY
+-------------------------------------------------- ---------- ----------
+apple                                                       1        200
+milk                                                        1        500
+bread                                                       2        400
+
+SQL> select * from asda;
+
+PRODUCT              PRICE_PURCHASED PRICE_SOLD QTY_PURCHASED   QTY_SOLD
+-------------------- --------------- ---------- ------------- ----------
+orange                            .5        .75            20          5
+apple                             .2         .5            50         20
+banana                            .1         .2           100         30
+
+SQL> select product,qty_purchased-qty_sold as stock from asda;
+
+PRODUCT                   STOCK
+-------------------- ----------
+orange                       15
+apple                        30
+banana                       70
+
+
+SQL> select product,qty_purchased-qty_sold as stock from asda where (qty_purchased-qty_stock)=(select min(qty_purchased-qty_stock) from asda;
+Error starting at line : 1 in command -
+select product,qty_purchased-qty_sold as stock from asda where (qty_purchased-qty_stock)=(select min(qty_purchased-qty_stock) from asda
+Error at Command Line : 1 Column : 91
+Error report -
+SQL Error: ORA-00920: invalid relational operator
+00920. 00000 -  "invalid relational operator"
+*Cause:    
+
+
+SQL> select product,qty_purchased-qty_sold as stock from asda where (qty_purchased-qty_stock)=(select min(qty_purchased-qty_stock) from asda);
+Error starting at line : 1 in command -
+select product,qty_purchased-qty_sold as stock from asda where (qty_purchased-qty_stock)=(select min(qty_purchased-qty_stock) from asda)
+Error at Command Line : 1 Column : 79
+Error report -
+SQL Error: ORA-00904: "QTY_STOCK": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select product,qty_purchased-qty_sold as stock from asda where (qty_purchased-qty_sold)=(select min(qty_purchased-qty_sold) from asda);
+PRODUCT                   STOCK
+-------------------- ----------
+orange                       15
+
+SQL> select * from schools;
+
+Error starting at line : 1 in command -
+select * from schools
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select * from school;
+
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        23 smith                                  24
+        56 jones                                  68
+        45 bloggs                                 43
+        32 smith                                 100
+
+SQL> select * from school where marks<=(select max(marks) from school
+
+
+SQL> D
+
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school));
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        56 jones                                  68
+        32 smith                                 100
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)));
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        56 jones                                  68
+        45 bloggs                                 43
+        32 smith                                 100
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school))) order by desc;
+Error starting at line : 1 in command -
+select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school))) order by desc
+Error at Command Line : 1 Column : 164
+Error report -
+SQL Error: ORA-00936: missing expression
+00936. 00000 -  "missing expression"
+*Cause:    
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)));
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        56 jones                                  68
+        45 bloggs                                 43
+        32 smith                                 100
+
+
+SQL> select * from school order by desc  where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)));
+Error starting at line : 1 in command -
+select * from school order by desc  where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)))
+Error at Command Line : 1 Column : 31
+Error report -
+SQL Error: ORA-00936: missing expression
+00936. 00000 -  "missing expression"
+*Cause:    
+
+
+SQL> select * from school order by desc where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)));
+Error starting at line : 1 in command -
+select * from school order by desc where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)))
+Error at Command Line : 1 Column : 31
+Error report -
+SQL Error: ORA-00936: missing expression
+00936. 00000 -  "missing expression"
+*Cause:    
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school)));
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        56 jones                                  68
+        45 bloggs                                 43
+        32 smith                                 100
+
+
+SQL> select * from school where marks>=(select max(marks) from school where marks<(select max(marks) from school where marks<(select max(marks) from school))) order by marks desc;
+     REGNO NAME                                MARKS
+---------- ------------------------------ ----------
+        32 smith                                 100
+        56 jones                                  68
+        45 bloggs                                 43
+
+SQL> 
+

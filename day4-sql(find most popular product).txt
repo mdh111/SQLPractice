@@ -1,0 +1,331 @@
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Tue May 21 11:28:03 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Tue May 21 2019 11:28:10 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> describe products;
+Name Null?    Type      
+---- -------- --------- 
+SID           NUMBER(3) 
+PID  NOT NULL NUMBER(3) 
+NAME          CHAR(20)  
+SQL> describe sales;
+Name      Null? Type        
+--------- ----- ----------- 
+PID             NUMBER(3)   
+QTY             NUMBER(3)   
+PRICE           NUMBER(5,2) 
+DATE_SOLD       DATE        
+SQL> select * from sales,products;
+
+       PID        QTY      PRICE DATE_SOLD        SID        PID
+---------- ---------- ---------- --------- ---------- ----------
+NAME                
+--------------------
+       101          2          2 20-MAY-19         10        101 
+7UP                 
+
+       101          2          2 20-MAY-19         10        102 
+COKE                
+
+       101          2          2 20-MAY-19         20        105 
+ABC                 
+
+       101          1       1.75 20-MAY-19         10        101 
+7UP                 
+
+       101          1       1.75 20-MAY-19         10        102 
+COKE                
+
+       101          1       1.75 20-MAY-19         20        105 
+ABC                 
+
+       105          2       1.05 20-MAY-19         10        101 
+
+       PID        QTY      PRICE DATE_SOLD        SID        PID
+---------- ---------- ---------- --------- ---------- ----------
+NAME                
+--------------------
+7UP                 
+
+       105          2       1.05 20-MAY-19         10        102 
+COKE                
+
+       105          2       1.05 20-MAY-19         20        105 
+ABC                 
+
+
+9 rows selected. 
+
+
+
+SQL> select * from sales,products;
+
+       PID        QTY      PRICE DATE_SOLD        SID        PID NAME                
+---------- ---------- ---------- --------- ---------- ---------- --------------------
+       101          2          2 20-MAY-19         10        101 7UP                 
+       101          2          2 20-MAY-19         10        102 COKE                
+       101          2          2 20-MAY-19         20        105 ABC                 
+       101          1       1.75 20-MAY-19         10        101 7UP                 
+       101          1       1.75 20-MAY-19         10        102 COKE                
+       101          1       1.75 20-MAY-19         20        105 ABC                 
+       105          2       1.05 20-MAY-19         10        101 7UP                 
+       105          2       1.05 20-MAY-19         10        102 COKE                
+       105          2       1.05 20-MAY-19         20        105 ABC                 
+
+9 rows selected. 
+
+
+
+SQL> select * from sales,products where sales.pid=products.pid;
+       PID        QTY      PRICE DATE_SOLD        SID        PID NAME                
+---------- ---------- ---------- --------- ---------- ---------- --------------------
+       101          2          2 20-MAY-19         10        101 7UP                 
+       101          1       1.75 20-MAY-19         10        101 7UP                 
+       105          2       1.05 20-MAY-19         20        105 ABC                 
+
+
+SQL> select count(*) pid from sales;
+       PID
+----------
+         3
+
+SQL> select max(count(*)) pid from sales;
+
+Error starting at line : 1 in command -
+select max(count(*)) pid from sales
+Error at Command Line : 1 Column : 12
+Error report -
+SQL Error: ORA-00978: nested group function without GROUP BY
+00978. 00000 -  "nested group function without GROUP BY"
+*Cause:    
+
+
+SQL> select sales.pid,count(*) from (select * from sales,products where sales.pid=products.pid);
+Error starting at line : 1 in command -
+select sales.pid,count(*) from (select * from sales,products where sales.pid=products.pid)
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00904: "SALES"."PID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select sales.pid,count(*) from (select * from sales,products where sales.pid=products.pid);
+Error starting at line : 1 in command -
+select sales.pid,count(*) from (select * from sales,products where sales.pid=products.pid)
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00904: "SALES"."PID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+
+
+SQL> select sales.pid from (select * from sales,products where sales.pid=products.pid);
+Error starting at line : 1 in command -
+select sales.pid from (select * from sales,products where sales.pid=products.pid)
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00904: "SALES"."PID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+*Action:
+SQL> select count(*) pid from sales;
+
+       PID
+----------
+         3
+
+
+SQL> select count(*) pid from sales group by pid;
+       PID
+----------
+         2
+         1
+
+
+SQL> select max(count(*)) pid from sales group by pid;
+       PID
+----------
+         2
+
+
+SQL> select pid, max(count(*)) pid from sales group by pid;
+Error starting at line : 1 in command -
+select pid, max(count(*)) pid from sales group by pid
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00937: not a single-group group function
+00937. 00000 -  "not a single-group group function"
+*Cause:    
+
+
+SQL> select pid,max(count(*)) pid from sales group by pid;
+Error starting at line : 1 in command -
+select pid,max(count(*)) pid from sales group by pid
+Error at Command Line : 1 Column : 8
+Error report -
+SQL Error: ORA-00937: not a single-group group function
+00937. 00000 -  "not a single-group group function"
+*Cause:    
+
+
+SQL> select pid from sales where (select count(*) pid from sales group by pid)=(select max(count(*)) pid from sales group by pid);
+Error starting at line : 1 in command -
+select pid from sales where (select count(*) pid from sales group by pid)=(select max(count(*)) pid from sales group by pid)
+Error report -
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select max(count(*)) pid from sales group by pid;
+
+       PID
+----------
+         2
+
+
+SQL> select max(count(*)) pid as count_pid from sales group by pid;
+Error starting at line : 1 in command -
+select max(count(*)) pid as count_pid from sales group by pid
+Error at Command Line : 1 Column : 26
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+00923. 00000 -  "FROM keyword not found where expected"
+*Cause:    
+
+
+SQL> select max(count(*)) pid from sales group by pid;
+       PID
+----------
+         2
+
+SQL> select pid from sales group by pid;
+
+       PID
+----------
+       101
+       105
+
+
+SQL> select pid from sales where pid=101 group by pid;
+       PID
+----------
+       101
+
+
+SQL> select pid from sales group by pid having pid=101;
+       PID
+----------
+       101
+
+
+
+SQL> select pid,count(*) from sales group by pid;
+       PID   COUNT(*)
+---------- ----------
+       101          2
+       105          1
+
+
+SQL> select pid,count(*) from sales where count(*)=max(count(*)) group by pid;
+Error starting at line : 1 in command -
+select pid,count(*) from sales where count(*)=max(count(*)) group by pid
+Error at Command Line : 1 Column : 38
+Error report -
+SQL Error: ORA-00934: group function is not allowed here
+00934. 00000 -  "group function is not allowed here"
+*Cause:    
+
+
+SQL> select pid,count(*) from sales group by pid;
+       PID   COUNT(*)
+---------- ----------
+       101          2
+       105          1
+
+
+SQL> select pid,count(*) from sales group by pid having count(*)=2;
+       PID   COUNT(*)
+---------- ----------
+       101          2
+
+
+SQL> select pid,count(*) from sales group by pid having count(*)=max(count(*));
+Error starting at line : 1 in command -
+select pid,count(*) from sales group by pid having count(*)=max(count(*))
+Error at Command Line : 1 Column : 65
+Error report -
+SQL Error: ORA-00935: group function is nested too deeply
+00935. 00000 -  "group function is nested too deeply"
+*Cause:    
+
+
+SQL> select pid,count(*) from sales group by pid having count(*)=(max(count(*)));
+Error starting at line : 1 in command -
+select pid,count(*) from sales group by pid having count(*)=(max(count(*)))
+Error at Command Line : 1 Column : 66
+Error report -
+SQL Error: ORA-00935: group function is nested too deeply
+00935. 00000 -  "group function is nested too deeply"
+*Cause:    
+
+
+SQL> select pid,count(*) from sales group by pid having count(*)=(select max(count(*)) pid from sales group by pid);
+       PID   COUNT(*)
+---------- ----------
+       101          2
+
+
+SQL> select name from products where pid=(select pid from sales group by pid having count(*)=(select max(count(*)) pid from sales group by pid));
+NAME
+--------------------
+7UP                 
+
+SQL> select * from sales;
+
+       PID        QTY      PRICE DATE_SOLD
+---------- ---------- ---------- ---------
+       101          2          2 20-MAY-19
+       101          1       1.75 20-MAY-19
+       105          2       1.05 20-MAY-19
+
+SQL> insert into sales values(105,1,1.50,sysdate);
+
+1 row inserted.
+
+
+SQL> select * from sales;
+
+       PID        QTY      PRICE DATE_SOLD
+---------- ---------- ---------- ---------
+       105          1        1.5 21-MAY-19
+       101          2          2 20-MAY-19
+       101          1       1.75 20-MAY-19
+       105          2       1.05 20-MAY-19
+
+
+SQL> select name from products where pid=(select pid from sales group by pid having count(*)=(select max(count(*)) pid from sales group by pid));
+
+Error starting at line : 1 in command -
+select name from products where pid=(select pid from sales group by pid having count(*)=(select max(count(*)) pid from sales group by pid))
+Error report -
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select name from products where pid in((select pid from sales group by pid having count(*)=(select max(count(*)) pid from sales group by pid)));
+NAME
+--------------------
+7UP                 
+ABC                 
+
+SQL> 
+
