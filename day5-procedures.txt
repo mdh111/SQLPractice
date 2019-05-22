@@ -179,192 +179,70 @@ SQL>
 *
 *
 
-SQLcl: Release 4.2.0.16.153.2014 RC on Wed May 22 09:42:04 2019
+SQLcl: Release 4.2.0.16.153.2014 RC on Wed May 22 10:53:01 2019
 
 Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 Username? (''?) hr
 Password? (**********?) ******
-Last Successful login time: Wed May 22 2019 09:42:08 -04:00
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SQL> create procedure createbankaccount(name char,postcode char,actype char,city char)
-  2  is
-
-SQL> create procedure createbankaccount(name char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  5  end;
-  7* /
-Error starting at line : 1 in command -
-create procedure createbankaccount(name char,postcode char,actype char,city char)
-is
-begin
-insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-end;
-
-
-
-
-
-
-
-SQL> create procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  5  end;
-  7* /
-Error starting at line : 1 in command -
-create procedure createbankaccount(name1 char,postcode char,actype char,city char)
-is
-begin
-insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-end;
-end;
-Error report -
-ORA-00955: name is already used by an existing object
-00955. 00000 -  "name is already used by an existing object"
-*Cause:    
-*Action:
-SQL> ed
-  1  create procedure createbankaccount(name1 char,postcode char,actype char,city char)
-
-
-
-
-
-
-
-
-SQL> create procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  6* /
-Error starting at line : 1 in command -
-create procedure createbankaccount(name1 char,postcode char,actype char,city char)
-is
-begin
-insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-end;
-
-
-
-
-
-
-SQL> create or replace procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  6* /
-Procedure CREATEBANKACCOUNT compiled
-
-Errors: check compiler log
-SQL> show errors
-
-Errors for PROCEDURE HR.CREATEBANKACCOUNT:
-
-
-
-
-
-
-SQL> create or replace procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0') from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  6* /
-Procedure CREATEBANKACCOUNT compiled
-
-Errors: check compiler log
-SQL> show errors
-
-Errors for PROCEDURE HR.CREATEBANKACCOUNT:
-
-
-
-
-
-
-SQL> create or replace procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4* insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0')) from bank where substr(accno,1,1)=upper(substr(actype,1,1)),name,postcode);
-  6  /
-
-
-SQL> list
-  1  create or replace procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-
-
-
-
-
-SQL> create or replace procedure createbankaccount(name1 char,postcode char,actype char,city char)
-  2  is
-  3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0') from bank where substr(accno,1,1)=upper(substr(actype,1,1))),name,postcode);
-  6* /
-Procedure CREATEBANKACCOUNT compiled
-
-Errors: check compiler log
-SQL> show errors
-
-Errors for PROCEDURE HR.CREATEBANKACCOUNT:
-
-
-
-
+Last Successful login time: Wed May 22 2019 10:53:05 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
 
 
 SQL> create or replace procedure createbankaccount(name char,postcode char,actype char,city char)
   2  is
   3  begin
-  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0') from bank where substr(accno,1,1)=upper(substr(actype,1,1))),name,postcode);
-  6* /
-Procedure CREATEBANKACCOUNT compiled
+  4  insert into bank2 values((select upper(substr(actype,1,1)) || upper(substr(city,1,1)) || lpad(nvl(max(substr(accno,3,3))+1,1),3,'0') from bank2 where substr (accno,1,1)=upper(substr(actype,1,1))),name,postcode);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> call createbankaccount('sam','sn101wq','current','swindon');
+Call completed.
 
 SQL> select * from bank2;
-no rows selected
-SQL> call createBankAccount('shafeeq','m193dn','current','london');
 
+ACCNO NAME                 POSTCODE  
+----- -------------------- ----------
+CL001 shafeeq              m193dn    
+CB001 mike                 m193dn    
+CS002 sam                  sn101wq   
+SS001 james                sn101aa   
+SS001 sam                  sn101wq   
+
+SQL> delete bank2;
+
+5 rows deleted.
+
+
+SQL> select * from bank2;
+
+
+SQL> call createbankaccount('sam','sn101wq','current','swindon');
+
+Call completed.
+
+
+SQL> call createbankaccount('mike','b3243','current','london');
 Call completed.
 
 
@@ -372,8 +250,21 @@ SQL> select * from bank2;
 
 ACCNO NAME                 POSTCODE  
 ----- -------------------- ----------
-CL001 shafeeq              m193dn    
+CS001 sam                  sn101wq   
+CL002 mike                 b3243     
+
+
+SQL> call createbankaccount('mike','b3243','savings','london');
+Call completed.
+
+
+SQL> select * from bank2;
+
+ACCNO NAME                 POSTCODE  
+----- -------------------- ----------
+CS001 sam                  sn101wq   
+CL002 mike                 b3243     
+SL001 mike                 b3243     
 
 SQL> 
-
 
