@@ -365,3 +365,172 @@ SQL> create or replace trigger delete_school after delete on school
   5  end;
   6* /
 
+*
+*
+*
+*
+SHOW A MESSAGE EVERY ROW DELETED FROM SCHOOL
+*
+*
+*
+*
+
+
+SQL> create or replace trigger delete_school after delete on school
+  2* for each row
+  3  begin
+  4  dbms_output.put_line('Record deleted');
+  5  end;
+  6  /
+
+*
+*
+*
+*
+*
+*
+TAKE A BACKUP OF EVERY RECORD WHEN DELETING RECORD(S) FROM SCHOOL
+*
+*
+*
+*
+*
+*
+*
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 09:50:39 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 09:50:43 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> set serveroutput on;
+SQL> delete school;
+Records deleted
+
+
+5 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL
+---------- ------------------------------ ---------- --------------------
+POSTCODE  
+----------
+        23 smith                                  24 NULL                 
+NULL      
+
+        56 jones                                  68 NULL                 
+NULL      
+
+        45 bloggs                                 43 NULL                 
+NULL      
+
+        32 smith                                 100 NULL                 
+NULL      
+
+        21 peter                                  75 NULL                 
+
+
+
+
+
+SQL> create or replace trigger delete_school after delete on school
+  2  for each row
+  3  begin
+  4  dbms_output.put_line('Record deleted');
+  5  end;
+  6* /
+Trigger DELETE_SCHOOL compiled
+
+SQL> delete school;
+Record deleted
+Record deleted
+Record deleted
+Record deleted
+Record deleted
+
+
+5 rows deleted.
+
+SQL> select * from school;
+no rows selected
+
+
+
+
+
+
+
+
+SQL> SELECT * FROM SCHOOL;
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+SQL> describe school;
+Name     Null? Type      
+-------- ----- --------- 
+REGNO          NUMBER(3) 
+NAME           CHAR(30)  
+MARKS          NUMBER(3) 
+EMAIL          CHAR(20)  
+POSTCODE       CHAR(10)  
+SQL> create table backup_school(r number(3),n char(30),m number(3),e char(20),p char(20));
+
+Table BACKUP_SCHOOL created.
+
+SQL> select * from backup_school;
+no rows selected
+SQL> create or replace trigger delete_school_backup before delete on school
+  2  for each row
+  3  begin
+  4  insert into backup_school values(:old.regno,:old.name,:old.marks,:old.email,:old.postcode);
+  5  end;
+  6  /
+
+Trigger DELETE_SCHOOL_BACKUP compiled
+
+SQL> delete school;
+Record deleted
+Record deleted
+Record deleted
+Record deleted
+Record deleted
+
+
+5 rows deleted.
+
+SQL> select * from school;
+no rows selected
+SQL> select * from backup_school;
+
+         R N                                       M E                    P                   
+---------- ------------------------------ ---------- -------------------- --------------------
+        23 smith                                  24 NULL                 NULL                
+        56 jones                                  68 NULL                 NULL                
+        45 bloggs                                 43 NULL                 NULL                
+        32 smith                                 100 NULL                 NULL                
+        21 peter                                  75 NULL                 NULL                
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> 
+
