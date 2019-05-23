@@ -1698,4 +1698,31 @@ Accounting
 
 SQL> 
 
+*
+*
+*
+*
+COUNT SUB CATEGORIES AND COUNT PRODUCTS FUNCTION
+*
+*
+*
+SQL> create or replace function countsubcategory(c number) return number
+  2  is
+  3  subcatcount number(3);
+  4  begin
+  5  select nvl(count(*),0) sid into subcatcount from subcategory where cid=c;
+  6  return subcatcount;
+  7  end;
+  8* /
+
+
+SQL> create or replace function countproducts(c number) return number
+  2  is
+  3  prodcount number(4);
+  4  begin
+  5  select nvl(count(*),0) pid into prodcount from products where sid in(select sid from subcategory where cid=c);  
+  6  return prodcount;
+  7  end;
+  8  /
+
 
