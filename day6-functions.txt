@@ -1,0 +1,497 @@
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 06:15:49 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 06:15:54 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+
+  2  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create function tax(s number) return number
+  2  IS
+  3  result number(7,2);
+  4  BEGIN
+  5  result:=s*0.21;
+  6  return result;
+  7  end;
+  8* /
+Function TAX compiled
+
+SQL> desrcribe employees;
+
+Error starting at line : 1 in command -
+desrcribe employees
+Error report -
+Unknown Command
+
+SQL> set linesize 400;
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+SQL> select first_name,salary,tax(salary) as tax from employees;
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Steven                    24000       5040
+Neena                     17000       3570
+Lex                       17000       3570
+Alexander                  9000       1890
+Bruce                      6000       1260
+David                      4800       1008
+Valli                      4800       1008
+Diana                      4200        882
+Nancy                     12000       2520
+Daniel                     9000       1890
+John                       8200       1722
+Ismael                     7700       1617
+Jose Manuel                7800       1638
+Luis                       6900       1449
+Den                       11000       2310
+Alexander                  3100        651
+Shelli                     2900        609
+Sigal                      2800        588
+Guy                        2600        546
+Karen                      2500        525
+Matthew                    8000       1680
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Adam                       8200       1722
+Payam                      7900       1659
+Shanta                     6500       1365
+Kevin                      5800       1218
+Julia                      3200        672
+Irene                      2700        567
+James                      2400        504
+Steven                     2200        462
+Laura                      3300        693
+Mozhe                      2800        588
+James                      2500        525
+TJ                         2100        441
+Jason                      3300        693
+Michael                    2900        609
+Ki                         2400        504
+Hazel                      2200        462
+Renske                     3600        756
+Stephen                    3200        672
+John                       2700        567
+Joshua                     2500        525
+Trenna                     3500        735
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Curtis                     3100        651
+Randall                    2600        546
+Peter                      2500        525
+John                      14000       2940
+Karen                     13500       2835
+Alberto                   12000       2520
+Gerald                    11000       2310
+Eleni                     10500       2205
+Peter                     10000       2100
+David                      9500       1995
+Peter                      9000       1890
+Christopher                8000       1680
+Nanette                    7500       1575
+Oliver                     7000       1470
+Janette                   10000       2100
+Patrick                    9500       1995
+Allan                      9000       1890
+Lindsey                    8000       1680
+Louise                     7500       1575
+Sarath                     7000       1470
+Clara                     10500       2205
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Danielle                   9500       1995
+Mattea                     7200       1512
+David                      6800       1428
+Sundar                     6400       1344
+Amit                       6200       1302
+Lisa                      11500       2415
+Harrison                  10000       2100
+Tayler                     9600       2016
+William                    7400       1554
+Elizabeth                  7300       1533
+Sundita                    6100       1281
+Ellen                     11000       2310
+Alyssa                     8800       1848
+Jonathon                   8600       1806
+Jack                       8400       1764
+Kimberely                  7000       1470
+Charles                    6200       1302
+Winston                    3200        672
+Jean                       3100        651
+Martha                     2500        525
+Girard                     2800        588
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Nandita                    4200        882
+Alexis                     4100        861
+Julia                      3400        714
+Anthony                    3000        630
+Kelly                      3800        798
+Jennifer                   3600        756
+Timothy                    2900        609
+Randall                    2500        525
+Sarah                      4000        840
+Britney                    3900        819
+Samuel                     3200        672
+Vance                      2800        588
+Alana                      3100        651
+Kevin                      3000        630
+Donald                     2600        546
+Douglas                    2600        546
+Jennifer                   4400        924
+Michael                   13000       2730
+Pat                        6000       1260
+Susan                      6500       1365
+Hermann                   10000       2100
+
+FIRST_NAME               SALARY        TAX
+-------------------- ---------- ----------
+Shelley                   12000       2520
+William                    8300       1743
+
+107 rows selected. 
+
+
+SQL> select first_name,salary,tax(salary) as tax,salary-tax(salary) as salary_after_tax from employees;
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Steven                    24000       5040            18960
+Neena                     17000       3570            13430
+Lex                       17000       3570            13430
+Alexander                  9000       1890             7110
+Bruce                      6000       1260             4740
+David                      4800       1008             3792
+Valli                      4800       1008             3792
+Diana                      4200        882             3318
+Nancy                     12000       2520             9480
+Daniel                     9000       1890             7110
+John                       8200       1722             6478
+Ismael                     7700       1617             6083
+Jose Manuel                7800       1638             6162
+Luis                       6900       1449             5451
+Den                       11000       2310             8690
+Alexander                  3100        651             2449
+Shelli                     2900        609             2291
+Sigal                      2800        588             2212
+Guy                        2600        546             2054
+Karen                      2500        525             1975
+Matthew                    8000       1680             6320
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Adam                       8200       1722             6478
+Payam                      7900       1659             6241
+Shanta                     6500       1365             5135
+Kevin                      5800       1218             4582
+Julia                      3200        672             2528
+Irene                      2700        567             2133
+James                      2400        504             1896
+Steven                     2200        462             1738
+Laura                      3300        693             2607
+Mozhe                      2800        588             2212
+James                      2500        525             1975
+TJ                         2100        441             1659
+Jason                      3300        693             2607
+Michael                    2900        609             2291
+Ki                         2400        504             1896
+Hazel                      2200        462             1738
+Renske                     3600        756             2844
+Stephen                    3200        672             2528
+John                       2700        567             2133
+Joshua                     2500        525             1975
+Trenna                     3500        735             2765
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Curtis                     3100        651             2449
+Randall                    2600        546             2054
+Peter                      2500        525             1975
+John                      14000       2940            11060
+Karen                     13500       2835            10665
+Alberto                   12000       2520             9480
+Gerald                    11000       2310             8690
+Eleni                     10500       2205             8295
+Peter                     10000       2100             7900
+David                      9500       1995             7505
+Peter                      9000       1890             7110
+Christopher                8000       1680             6320
+Nanette                    7500       1575             5925
+Oliver                     7000       1470             5530
+Janette                   10000       2100             7900
+Patrick                    9500       1995             7505
+Allan                      9000       1890             7110
+Lindsey                    8000       1680             6320
+Louise                     7500       1575             5925
+Sarath                     7000       1470             5530
+Clara                     10500       2205             8295
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Danielle                   9500       1995             7505
+Mattea                     7200       1512             5688
+David                      6800       1428             5372
+Sundar                     6400       1344             5056
+Amit                       6200       1302             4898
+Lisa                      11500       2415             9085
+Harrison                  10000       2100             7900
+Tayler                     9600       2016             7584
+William                    7400       1554             5846
+Elizabeth                  7300       1533             5767
+Sundita                    6100       1281             4819
+Ellen                     11000       2310             8690
+Alyssa                     8800       1848             6952
+Jonathon                   8600       1806             6794
+Jack                       8400       1764             6636
+Kimberely                  7000       1470             5530
+Charles                    6200       1302             4898
+Winston                    3200        672             2528
+Jean                       3100        651             2449
+Martha                     2500        525             1975
+Girard                     2800        588             2212
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Nandita                    4200        882             3318
+Alexis                     4100        861             3239
+Julia                      3400        714             2686
+Anthony                    3000        630             2370
+Kelly                      3800        798             3002
+Jennifer                   3600        756             2844
+Timothy                    2900        609             2291
+Randall                    2500        525             1975
+Sarah                      4000        840             3160
+Britney                    3900        819             3081
+Samuel                     3200        672             2528
+Vance                      2800        588             2212
+Alana                      3100        651             2449
+Kevin                      3000        630             2370
+Donald                     2600        546             2054
+Douglas                    2600        546             2054
+Jennifer                   4400        924             3476
+Michael                   13000       2730            10270
+Pat                        6000       1260             4740
+Susan                      6500       1365             5135
+Hermann                   10000       2100             7900
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Shelley                   12000       2520             9480
+William                    8300       1743             6557
+
+107 rows selected. 
+
+
+SQL> select first_name,salary,tax(salary) as tax,salary-tax(salary) as salary_after_tax from employees;
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Steven                    24000       5040            18960
+Neena                     17000       3570            13430
+Lex                       17000       3570            13430
+Alexander                  9000       1890             7110
+Bruce                      6000       1260             4740
+David                      4800       1008             3792
+Valli                      4800       1008             3792
+Diana                      4200        882             3318
+Nancy                     12000       2520             9480
+Daniel                     9000       1890             7110
+John                       8200       1722             6478
+Ismael                     7700       1617             6083
+Jose Manuel                7800       1638             6162
+Luis                       6900       1449             5451
+Den                       11000       2310             8690
+Alexander                  3100        651             2449
+Shelli                     2900        609             2291
+Sigal                      2800        588             2212
+Guy                        2600        546             2054
+Karen                      2500        525             1975
+Matthew                    8000       1680             6320
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Adam                       8200       1722             6478
+Payam                      7900       1659             6241
+Shanta                     6500       1365             5135
+Kevin                      5800       1218             4582
+Julia                      3200        672             2528
+Irene                      2700        567             2133
+James                      2400        504             1896
+Steven                     2200        462             1738
+Laura                      3300        693             2607
+Mozhe                      2800        588             2212
+James                      2500        525             1975
+TJ                         2100        441             1659
+Jason                      3300        693             2607
+Michael                    2900        609             2291
+Ki                         2400        504             1896
+Hazel                      2200        462             1738
+Renske                     3600        756             2844
+Stephen                    3200        672             2528
+John                       2700        567             2133
+Joshua                     2500        525             1975
+Trenna                     3500        735             2765
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Curtis                     3100        651             2449
+Randall                    2600        546             2054
+Peter                      2500        525             1975
+John                      14000       2940            11060
+Karen                     13500       2835            10665
+Alberto                   12000       2520             9480
+Gerald                    11000       2310             8690
+Eleni                     10500       2205             8295
+Peter                     10000       2100             7900
+David                      9500       1995             7505
+Peter                      9000       1890             7110
+Christopher                8000       1680             6320
+Nanette                    7500       1575             5925
+Oliver                     7000       1470             5530
+Janette                   10000       2100             7900
+Patrick                    9500       1995             7505
+Allan                      9000       1890             7110
+Lindsey                    8000       1680             6320
+Louise                     7500       1575             5925
+Sarath                     7000       1470             5530
+Clara                     10500       2205             8295
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Danielle                   9500       1995             7505
+Mattea                     7200       1512             5688
+David                      6800       1428             5372
+Sundar                     6400       1344             5056
+Amit                       6200       1302             4898
+Lisa                      11500       2415             9085
+Harrison                  10000       2100             7900
+Tayler                     9600       2016             7584
+William                    7400       1554             5846
+Elizabeth                  7300       1533             5767
+Sundita                    6100       1281             4819
+Ellen                     11000       2310             8690
+Alyssa                     8800       1848             6952
+Jonathon                   8600       1806             6794
+Jack                       8400       1764             6636
+Kimberely                  7000       1470             5530
+Charles                    6200       1302             4898
+Winston                    3200        672             2528
+Jean                       3100        651             2449
+Martha                     2500        525             1975
+Girard                     2800        588             2212
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Nandita                    4200        882             3318
+Alexis                     4100        861             3239
+Julia                      3400        714             2686
+Anthony                    3000        630             2370
+Kelly                      3800        798             3002
+Jennifer                   3600        756             2844
+Timothy                    2900        609             2291
+Randall                    2500        525             1975
+Sarah                      4000        840             3160
+Britney                    3900        819             3081
+Samuel                     3200        672             2528
+Vance                      2800        588             2212
+Alana                      3100        651             2449
+Kevin                      3000        630             2370
+Donald                     2600        546             2054
+Douglas                    2600        546             2054
+Jennifer                   4400        924             3476
+Michael                   13000       2730            10270
+Pat                        6000       1260             4740
+Susan                      6500       1365             5135
+Hermann                   10000       2100             7900
+
+FIRST_NAME               SALARY        TAX SALARY_AFTER_TAX
+-------------------- ---------- ---------- ----------------
+Shelley                   12000       2520             9480
+William                    8300       1743             6557
+
+107 rows selected. 
+
+SQL> select 9*9 from dual;
+
+       9*9
+----------
+        81
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+23-MAY-19
+
+SQL> select tax(12000) from dual;
+
+TAX(12000)
+----------
+      2520
+
+SQL> select user fromdual;
+
+Error starting at line : 1 in command -
+select user fromdual
+Error at Command Line : 1 Column : 20
+Error report -
+SQL Error: ORA-00923: FROM keyword not found where expected
+00923. 00000 -  "FROM keyword not found where expected"
+*Cause:    
+
+
+SQL> select user from dual;
+USER
+------------------------------
+HR
+
+SQL> 
+
