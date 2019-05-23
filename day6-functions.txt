@@ -495,3 +495,1207 @@ HR
 
 SQL> 
 
+*
+*
+*
+*
+*
+*
+TAX2 FUNCTION AND DNAME FUNCTION
+*
+*
+*
+*
+*
+*
+*
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 06:51:58 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 06:52:07 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+SQL> describe departments;
+Name            Null?    Type         
+--------------- -------- ------------ 
+DEPARTMENT_ID   NOT NULL NUMBER(4)    
+DEPARTMENT_NAME NOT NULL VARCHAR2(30) 
+MANAGER_ID               NUMBER(6)    
+LOCATION_ID              NUMBER(4)    
+SQL> create or replace function tax2(s number) return number
+
+
+
+
+SQL> create or replace function tax2(s number) return number
+  2  is
+  3  result number(7,2);
+  4  begin
+  5  if (s<=500) then
+  6  result:=0;
+  7  else if (s>500 and s<=1000) then
+  8  result:=s*0.15;
+  9  else if (s>1000) then
+ 10  result:=s*0.21;
+ 11  end if;
+ 12* /
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace function tax2(s number) return number
+  2  is
+  3  result number(7,2);
+  4  begin
+  5  if (s<=500) then
+  6  result:=0;
+  7  end if;
+  8  if (s>500 and s<=1000) then
+  9  result:=s*0.15;
+ 10  end if;
+ 11  if (s>1000) then
+ 12  result:=s*0.21;
+ 13  end if;
+ 14* /
+Function TAX2 compiled
+
+Errors: check compiler log
+SQL> show errors
+
+Errors for FUNCTION HR.TAX2:
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace function tax2(s number) return number
+  2  is
+  3  result number(7,2);
+  4  begin
+  5  if (s<=500) then
+  6  result:=0;
+  7  end if;
+  8  if (s>500 and s<=1000) then
+  9  result:=s*0.15;
+ 10  end if;
+ 11  if (s>1000) then
+ 12  result:=s*0.21;
+ 13  end if;
+ 14  return result;
+ 15* /
+Function TAX2 compiled
+
+Errors: check compiler log
+SQL> show errors;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace function tax2(s number) return number
+  2  is
+  3  result number(7,2);
+  4  begin
+  5  if (s<=500) then
+  6  result:=0;
+  7  end if;
+  8  if (s>500 and s<=1000) then
+  9  result:=s*0.15;
+ 10  end if;
+ 11  if (s>1000) then
+ 12  result:=s*0.21;
+ 13  end if;
+ 14  return result;
+ 15* /
+Function TAX2 compiled
+
+Errors: check compiler log
+SQL> show errors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace function tax2(s number) return number
+  2  is
+  3  result number(7,2);
+  4  begin
+  5  if (s<=500) then
+  6  result:=0;
+  7  end if;
+  8  if (s>500 and s<=1000) then
+  9  result:=s*0.15;
+ 10  end if;
+ 11  if (s>1000) then
+ 12  result:=s*0.21;
+ 13  end if;
+ 14  return result;
+ 15  end;
+ 16* /
+Function TAX2 compiled
+
+SQL> select first_name,salary,tax2(salary) from employees;
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Steven                    24000         5040
+Neena                     17000         3570
+Lex                       17000         3570
+Alexander                  9000         1890
+Bruce                      6000         1260
+David                      4800         1008
+Valli                      4800         1008
+Diana                      4200          882
+Nancy                     12000         2520
+Daniel                     9000         1890
+John                       8200         1722
+Ismael                     7700         1617
+Jose Manuel                7800         1638
+Luis                       6900         1449
+Den                       11000         2310
+Alexander                  3100          651
+Shelli                     2900          609
+Sigal                      2800          588
+Guy                        2600          546
+Karen                      2500          525
+Matthew                    8000         1680
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Adam                       8200         1722
+Payam                      7900         1659
+Shanta                     6500         1365
+Kevin                      5800         1218
+Julia                      3200          672
+Irene                      2700          567
+James                      2400          504
+Steven                     2200          462
+Laura                      3300          693
+Mozhe                      2800          588
+James                      2500          525
+TJ                         2100          441
+Jason                      3300          693
+Michael                    2900          609
+Ki                         2400          504
+Hazel                      2200          462
+Renske                     3600          756
+Stephen                    3200          672
+John                       2700          567
+Joshua                     2500          525
+Trenna                     3500          735
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Curtis                     3100          651
+Randall                    2600          546
+Peter                      2500          525
+John                      14000         2940
+Karen                     13500         2835
+Alberto                   12000         2520
+Gerald                    11000         2310
+Eleni                     10500         2205
+Peter                     10000         2100
+David                      9500         1995
+Peter                      9000         1890
+Christopher                8000         1680
+Nanette                    7500         1575
+Oliver                     7000         1470
+Janette                   10000         2100
+Patrick                    9500         1995
+Allan                      9000         1890
+Lindsey                    8000         1680
+Louise                     7500         1575
+Sarath                     7000         1470
+Clara                     10500         2205
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Danielle                   9500         1995
+Mattea                     7200         1512
+David                      6800         1428
+Sundar                     6400         1344
+Amit                       6200         1302
+Lisa                      11500         2415
+Harrison                  10000         2100
+Tayler                     9600         2016
+William                    7400         1554
+Elizabeth                  7300         1533
+Sundita                    6100         1281
+Ellen                     11000         2310
+Alyssa                     8800         1848
+Jonathon                   8600         1806
+Jack                       8400         1764
+Kimberely                  7000         1470
+Charles                    6200         1302
+Winston                    3200          672
+Jean                       3100          651
+Martha                     2500          525
+Girard                     2800          588
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Nandita                    4200          882
+Alexis                     4100          861
+Julia                      3400          714
+Anthony                    3000          630
+Kelly                      3800          798
+Jennifer                   3600          756
+Timothy                    2900          609
+Randall                    2500          525
+Sarah                      4000          840
+Britney                    3900          819
+Samuel                     3200          672
+Vance                      2800          588
+Alana                      3100          651
+Kevin                      3000          630
+Donald                     2600          546
+Douglas                    2600          546
+Jennifer                   4400          924
+Michael                   13000         2730
+Pat                        6000         1260
+Susan                      6500         1365
+Hermann                   10000         2100
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+Shelley                   12000         2520
+William                    8300         1743
+
+107 rows selected. 
+
+SQL> describe employees;
+Name           Null?    Type         
+-------------- -------- ------------ 
+EMPLOYEE_ID    NOT NULL NUMBER(6)    
+FIRST_NAME              VARCHAR2(20) 
+LAST_NAME      NOT NULL VARCHAR2(25) 
+EMAIL          NOT NULL VARCHAR2(25) 
+PHONE_NUMBER            VARCHAR2(20) 
+HIRE_DATE      NOT NULL DATE         
+JOB_ID         NOT NULL VARCHAR2(10) 
+SALARY                  NUMBER(8,2)  
+COMMISSION_PCT          NUMBER(2,2)  
+MANAGER_ID              NUMBER(6)    
+DEPARTMENT_ID           NUMBER(4)    
+SQL> describe departments;
+Name            Null?    Type         
+
+
+
+
+
+
+
+SQL> create or replace function dname(d number) return char
+  2  is
+  3  dn departments.department_name%type;
+  4  begin
+  5  select department_name into dname from departments where d=department_id;
+  6  return dn;
+  7  end;
+  8* / 
+Function DNAME compiled
+
+Errors: check compiler log
+SQL> show errors
+
+Errors for FUNCTION HR.DNAME:
+
+
+
+
+
+
+
+SQL> create or replace function dname(d number) return char
+  2  is
+  3  dn departments.department_name%type;
+  4  begin
+  5  select department_name into dn from departments where d=department_id;
+  6  return dn;
+  7  end;
+  8* /
+Function DNAME compiled
+
+SQL> select first_name,salary,tax2(salary),dname(department_id) from employees;
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Steven                    24000         5040 
+Executive                                                                       
+
+Neena                     17000         3570 
+Executive                                                                       
+
+Lex                       17000         3570 
+Executive                                                                       
+
+Alexander                  9000         1890 
+IT                                                                              
+
+Bruce                      6000         1260 
+IT                                                                              
+
+David                      4800         1008 
+IT                                                                              
+
+Valli                      4800         1008 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+IT                                                                              
+
+Diana                      4200          882 
+IT                                                                              
+
+Nancy                     12000         2520 
+Finance                                                                         
+
+Daniel                     9000         1890 
+Finance                                                                         
+
+John                       8200         1722 
+Finance                                                                         
+
+Ismael                     7700         1617 
+Finance                                                                         
+
+Jose Manuel                7800         1638 
+Finance                                                                         
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+
+Luis                       6900         1449 
+Finance                                                                         
+
+Den                       11000         2310 
+Purchasing                                                                      
+
+Alexander                  3100          651 
+Purchasing                                                                      
+
+Shelli                     2900          609 
+Purchasing                                                                      
+
+Sigal                      2800          588 
+Purchasing                                                                      
+
+Guy                        2600          546 
+Purchasing                                                                      
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Karen                      2500          525 
+Purchasing                                                                      
+
+Matthew                    8000         1680 
+Shipping                                                                        
+
+Adam                       8200         1722 
+Shipping                                                                        
+
+Payam                      7900         1659 
+Shipping                                                                        
+
+Shanta                     6500         1365 
+Shipping                                                                        
+
+Kevin                      5800         1218 
+Shipping                                                                        
+
+Julia                      3200          672 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Shipping                                                                        
+
+Irene                      2700          567 
+Shipping                                                                        
+
+James                      2400          504 
+Shipping                                                                        
+
+Steven                     2200          462 
+Shipping                                                                        
+
+Laura                      3300          693 
+Shipping                                                                        
+
+Mozhe                      2800          588 
+Shipping                                                                        
+
+James                      2500          525 
+Shipping                                                                        
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+
+TJ                         2100          441 
+Shipping                                                                        
+
+Jason                      3300          693 
+Shipping                                                                        
+
+Michael                    2900          609 
+Shipping                                                                        
+
+Ki                         2400          504 
+Shipping                                                                        
+
+Hazel                      2200          462 
+Shipping                                                                        
+
+Renske                     3600          756 
+Shipping                                                                        
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Stephen                    3200          672 
+Shipping                                                                        
+
+John                       2700          567 
+Shipping                                                                        
+
+Joshua                     2500          525 
+Shipping                                                                        
+
+Trenna                     3500          735 
+Shipping                                                                        
+
+Curtis                     3100          651 
+Shipping                                                                        
+
+Randall                    2600          546 
+Shipping                                                                        
+
+Peter                      2500          525 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Shipping                                                                        
+
+John                      14000         2940 
+Sales                                                                           
+
+Karen                     13500         2835 
+Sales                                                                           
+
+Alberto                   12000         2520 
+Sales                                                                           
+
+Gerald                    11000         2310 
+Sales                                                                           
+
+Eleni                     10500         2205 
+Sales                                                                           
+
+Peter                     10000         2100 
+Sales                                                                           
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+
+David                      9500         1995 
+Sales                                                                           
+
+Peter                      9000         1890 
+Sales                                                                           
+
+Christopher                8000         1680 
+Sales                                                                           
+
+Nanette                    7500         1575 
+Sales                                                                           
+
+Oliver                     7000         1470 
+Sales                                                                           
+
+Janette                   10000         2100 
+Sales                                                                           
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Patrick                    9500         1995 
+Sales                                                                           
+
+Allan                      9000         1890 
+Sales                                                                           
+
+Lindsey                    8000         1680 
+Sales                                                                           
+
+Louise                     7500         1575 
+Sales                                                                           
+
+Sarath                     7000         1470 
+Sales                                                                           
+
+Clara                     10500         2205 
+Sales                                                                           
+
+Danielle                   9500         1995 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Sales                                                                           
+
+Mattea                     7200         1512 
+Sales                                                                           
+
+David                      6800         1428 
+Sales                                                                           
+
+Sundar                     6400         1344 
+Sales                                                                           
+
+Amit                       6200         1302 
+Sales                                                                           
+
+Lisa                      11500         2415 
+Sales                                                                           
+
+Harrison                  10000         2100 
+Sales                                                                           
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+
+Tayler                     9600         2016 
+Sales                                                                           
+
+William                    7400         1554 
+Sales                                                                           
+
+Elizabeth                  7300         1533 
+Sales                                                                           
+
+Sundita                    6100         1281 
+Sales                                                                           
+
+Ellen                     11000         2310 
+Sales                                                                           
+
+Alyssa                     8800         1848 
+Sales                                                                           
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Jonathon                   8600         1806 
+Sales                                                                           
+
+Jack                       8400         1764 
+Sales                                                                           
+
+Kimberely                  7000         1470 
+NULL                                                                            
+
+Charles                    6200         1302 
+Sales                                                                           
+
+Winston                    3200          672 
+Shipping                                                                        
+
+Jean                       3100          651 
+Shipping                                                                        
+
+Martha                     2500          525 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Shipping                                                                        
+
+Girard                     2800          588 
+Shipping                                                                        
+
+Nandita                    4200          882 
+Shipping                                                                        
+
+Alexis                     4100          861 
+Shipping                                                                        
+
+Julia                      3400          714 
+Shipping                                                                        
+
+Anthony                    3000          630 
+Shipping                                                                        
+
+Kelly                      3800          798 
+Shipping                                                                        
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+
+Jennifer                   3600          756 
+Shipping                                                                        
+
+Timothy                    2900          609 
+Shipping                                                                        
+
+Randall                    2500          525 
+Shipping                                                                        
+
+Sarah                      4000          840 
+Shipping                                                                        
+
+Britney                    3900          819 
+Shipping                                                                        
+
+Samuel                     3200          672 
+Shipping                                                                        
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Vance                      2800          588 
+Shipping                                                                        
+
+Alana                      3100          651 
+Shipping                                                                        
+
+Kevin                      3000          630 
+Shipping                                                                        
+
+Donald                     2600          546 
+Shipping                                                                        
+
+Douglas                    2600          546 
+Shipping                                                                        
+
+Jennifer                   4400          924 
+Administration                                                                  
+
+Michael                   13000         2730 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                            
+--------------------------------------------------------------------------------
+Marketing                                                                       
+
+Pat                        6000         1260 
+Marketing                                                                       
+
+Susan                      6500         1365 
+Human Resources                                                                 
+
+Hermann                   10000         2100 
+Public Relations                                                                
+
+Shelley                   12000         2520 
+Accounting                                                                      
+
+William                    8300         1743 
+Accounting                                                                      
+
+
+107 rows selected. 
+
+
+
+SQL> select first_name,salary,tax2(salary),dname(department_id) from employees;
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Steven                    24000         5040 
+Executive                                                                                                                                                                                                                                                                                                                                                                                                       
+
+Neena                     17000         3570 
+Executive                                                                                                                                                                                                                                                                                                                                                                                                       
+
+Lex                       17000         3570 
+Executive                                                                                                                                                                                                                                                                                                                                                                                                       
+
+Alexander                  9000         1890 
+IT                                                                                                                                                                                                                                                                                                                                                                                                              
+
+Bruce                      6000         1260 
+IT                                                                                                                                                                                                                                                                                                                                                                                                              
+
+David                      4800         1008 
+IT                                                                                                                                                                                                                                                                                                                                                                                                              
+
+Valli                      4800         1008 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IT                                                                                                                                                                                                                                                                                                                                                                                                              
+
+Diana                      4200          882 
+IT                                                                                                                                                                                                                                                                                                                                                                                                              
+
+Nancy                     12000         2520 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+Daniel                     9000         1890 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+John                       8200         1722 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+Ismael                     7700         1617 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+Jose Manuel                7800         1638 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Luis                       6900         1449 
+Finance                                                                                                                                                                                                                                                                                                                                                                                                         
+
+Den                       11000         2310 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+Alexander                  3100          651 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+Shelli                     2900          609 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+Sigal                      2800          588 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+Guy                        2600          546 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Karen                      2500          525 
+Purchasing                                                                                                                                                                                                                                                                                                                                                                                                      
+
+Matthew                    8000         1680 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Adam                       8200         1722 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Payam                      7900         1659 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Shanta                     6500         1365 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Kevin                      5800         1218 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Julia                      3200          672 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Irene                      2700          567 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+James                      2400          504 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Steven                     2200          462 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Laura                      3300          693 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Mozhe                      2800          588 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+James                      2500          525 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TJ                         2100          441 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Jason                      3300          693 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Michael                    2900          609 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Ki                         2400          504 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Hazel                      2200          462 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Renske                     3600          756 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Stephen                    3200          672 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+John                       2700          567 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Joshua                     2500          525 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Trenna                     3500          735 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Curtis                     3100          651 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Randall                    2600          546 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Peter                      2500          525 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+John                      14000         2940 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Karen                     13500         2835 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Alberto                   12000         2520 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Gerald                    11000         2310 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Eleni                     10500         2205 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Peter                     10000         2100 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+David                      9500         1995 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Peter                      9000         1890 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Christopher                8000         1680 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Nanette                    7500         1575 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Oliver                     7000         1470 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Janette                   10000         2100 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Patrick                    9500         1995 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Allan                      9000         1890 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Lindsey                    8000         1680 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Louise                     7500         1575 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Sarath                     7000         1470 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Clara                     10500         2205 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Danielle                   9500         1995 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Mattea                     7200         1512 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+David                      6800         1428 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Sundar                     6400         1344 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Amit                       6200         1302 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Lisa                      11500         2415 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Harrison                  10000         2100 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Tayler                     9600         2016 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+William                    7400         1554 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Elizabeth                  7300         1533 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Sundita                    6100         1281 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Ellen                     11000         2310 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Alyssa                     8800         1848 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Jonathon                   8600         1806 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Jack                       8400         1764 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Kimberely                  7000         1470 
+NULL                                                                                                                                                                                                                                                                                                                                                                                                            
+
+Charles                    6200         1302 
+Sales                                                                                                                                                                                                                                                                                                                                                                                                           
+
+Winston                    3200          672 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Jean                       3100          651 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Martha                     2500          525 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Girard                     2800          588 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Nandita                    4200          882 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Alexis                     4100          861 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Julia                      3400          714 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Anthony                    3000          630 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Kelly                      3800          798 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Jennifer                   3600          756 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Timothy                    2900          609 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Randall                    2500          525 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Sarah                      4000          840 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Britney                    3900          819 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Samuel                     3200          672 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Vance                      2800          588 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Alana                      3100          651 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Kevin                      3000          630 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Donald                     2600          546 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Douglas                    2600          546 
+Shipping                                                                                                                                                                                                                                                                                                                                                                                                        
+
+Jennifer                   4400          924 
+Administration                                                                                                                                                                                                                                                                                                                                                                                                  
+
+Michael                   13000         2730 
+
+FIRST_NAME               SALARY TAX2(SALARY)
+-------------------- ---------- ------------
+DNAME(DEPARTMENT_ID)                                                                                                                                                                                                                                                                                                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Marketing                                                                                                                                                                                                                                                                                                                                                                                                       
+
+Pat                        6000         1260 
+Marketing                                                                                                                                                                                                                                                                                                                                                                                                       
+
+Susan                      6500         1365 
+Human Resources                                                                                                                                                                                                                                                                                                                                                                                                 
+
+Hermann                   10000         2100 
+Public Relations                                                                                                                                                                                                                                                                                                                                                                                                
+
+Shelley                   12000         2520 
+Accounting                                                                                                                                                                                                                                                                                                                                                                                                      
+
+William                    8300         1743 
+Accounting                                                                                                                                                                                                                                                                                                                                                                                                      
+
+
+107 rows selected. 
+
+SQL> 
+
+
