@@ -1,0 +1,367 @@
+*
+*
+*
+*
+MY FIRST TRIGGER - WHEN DELETING RECORDS FROMSCHOOL
+*
+*
+*
+*
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 07:38:59 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 07:39:06 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> 
+
+
+
+
+
+
+
+
+SQL> create or replace function countsubcategory(c number) return number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> select * from category;
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+         2 sports              
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+         2          3 football            
+         2          4 cricket             
+         2          5 rugby               
+
+SQL> select * from products;
+
+       SID        PID NAME                
+---------- ---------- --------------------
+         1          1 7up                 
+         1          2 coke                
+
+SQL> insert into products values(2,3,'apple');
+
+1 row inserted.
+
+
+SQL> insert into products values(2,3,'banana');
+Error starting at line : 1 in command -
+insert into products values(2,3,'banana')
+Error report -
+ORA-00001: unique constraint (HR.SYS_C0014579) violated
+
+
+SQL> insert into products values(2,4,'banana');
+1 row inserted.
+
+
+SQL> insert into products values(2,4,'grapes');
+Error starting at line : 1 in command -
+insert into products values(2,4,'grapes')
+Error report -
+ORA-00001: unique constraint (HR.SYS_C0014579) violated
+
+
+SQL> insert into products values(2,5,'grapes');
+1 row inserted.
+
+
+
+
+
+
+SQL> insert into products values(2,6,'orange');
+1 row inserted.
+
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+         2          3 football            
+         2          4 cricket             
+         2          5 rugby               
+
+
+SQL> select * from products;
+
+       SID        PID NAME                
+---------- ---------- --------------------
+         2          3 apple               
+         2          4 banana              
+         2          5 grapes              
+         2          6 orange              
+         1          1 7up                 
+         1          2 coke                
+
+6 rows selected. 
+
+
+SQL> insert into products values(3,7,'ball');
+1 row inserted.
+
+
+SQL> insert into products values(4,8,'bat');
+1 row inserted.
+
+
+
+
+SQL> insert into products values(4,8,'stumps');
+Error starting at line : 1 in command -
+insert into products values(4,8,'stumps')
+Error report -
+ORA-00001: unique constraint (HR.SYS_C0014579) violated
+
+
+SQL> insert into products values(4,9,'stumps');
+1 row inserted.
+
+
+SQL> insert into products values(4,10,'helmet');
+1 row inserted.
+
+
+SQL> insert into products values(5,11,'ball');
+1 row inserted.
+
+
+SQL> insert into products values(5,12,'boots');
+1 row inserted.
+
+SQL> select * from products;
+
+       SID        PID NAME                
+---------- ---------- --------------------
+         2          3 apple               
+         2          4 banana              
+         2          5 grapes              
+         2          6 orange              
+         3          7 ball                
+         4          8 bat                 
+         4          9 stumps              
+         4         10 helmet              
+         5         11 ball                
+         5         12 boots               
+         1          1 7up                 
+         1          2 coke                
+
+12 rows selected. 
+
+SQL> select description,countsubcategory(cid),countproducts(cid) from category;
+
+DESCRIPTION          COUNTSUBCATEGORY(CID) COUNTPRODUCTS(CID)
+-------------------- --------------------- ------------------
+food                                     2                  6
+sports                                   3                  6
+
+SQL> insert into products values(1,13,'fanta');
+
+1 row inserted.
+
+
+SQL> insert into products values(1,13,'sprite');
+Error starting at line : 1 in command -
+insert into products values(1,13,'sprite')
+Error report -
+ORA-00001: unique constraint (HR.SYS_C0014579) violated
+
+
+SQL> insert into products values(1,14,'sprite');
+1 row inserted.
+
+
+SQL> select description,countsubcategory(cid),countproducts(cid) from category;
+
+DESCRIPTION          COUNTSUBCATEGORY(CID) COUNTPRODUCTS(CID)
+-------------------- --------------------- ------------------
+food                                     2                  8
+sports                                   3                  6
+
+
+SQL> select * from products;
+       SID        PID NAME                
+---------- ---------- --------------------
+         2          3 apple               
+         2          4 banana              
+         2          5 grapes              
+         2          6 orange              
+         3          7 ball                
+         4          8 bat                 
+         4          9 stumps              
+         4         10 helmet              
+         5         11 ball                
+         5         12 boots               
+         1         13 fanta               
+         1         14 sprite              
+         1          1 7up                 
+         1          2 coke                
+
+14 rows selected. 
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+         2          3 football            
+         2          4 cricket             
+         2          5 rugby               
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+         2 sports              
+
+SQL> select * from test;
+Error starting at line : 1 in command -
+select * from test
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select * from test2;
+
+Error starting at line : 1 in command -
+select * from test2
+Error at Command Line : 1 Column : 15
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL
+---------- ------------------------------ ---------- --------------------
+POSTCODE  
+----------
+        23 smith                                  24 NULL                 
+NULL      
+
+        56 jones                                  68 NULL                 
+NULL      
+
+        45 bloggs                                 43 NULL                 
+NULL      
+
+        32 smith                                 100 NULL                 
+NULL      
+
+        21 peter                                  75 NULL                 
+NULL      
+
+
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+SQL> rollback;
+
+Rollback complete.
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+SQL> create or replace trigger delete_school after delete on school
+  2  declare
+  3  begin
+  4  dbms_output.put_line('Records deleted');
+  5  end;
+  6  /
+
+Trigger DELETE_SCHOOL compiled
+
+SQL> set serveroutput on;
+SQL> delete school;
+Records deleted
+
+
+
+
+
+
+
+
+
+
+SQL> select * from school;
+no rows selected
+SQL> rollback;
+
+Rollback complete.
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+
+
+
+
+
+SQL> create or replace trigger delete_school after delete on school
+  2  declare
+  3  begin
+  4  dbms_output.put_line('Records deleted');
+  5  end;
+  6* /
+
