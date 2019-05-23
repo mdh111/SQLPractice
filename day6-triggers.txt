@@ -510,6 +510,123 @@ SQL> delete school;
 Record deleted
 Record deleted
 Record deleted
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 11:29:59 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 11:30:02 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace trigger insert_school_backup before insert on school
+  2  for each row
+  3  begin
+  4  if ((:new.marks=58) OR (:new.marks=59)) then
+  5  :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Trigger INSERT_SCHOOL_BACKUP compiled
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL
+---------- ------------------------------ ---------- --------------------
+POSTCODE  
+----------
+        23 smith                                  24 NULL                 
+NULL      
+
+        56 jones                                  68 NULL                 
+NULL      
+
+        45 bloggs                                 43 NULL                 
+NULL      
+
+        32 smith                                 100 NULL                 
+NULL      
+
+        21 peter                                  75 NULL                 
+NULL      
+
+
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+SQL> insert into school values(25,'sam',58);
+
+Error starting at line : 1 in command -
+insert into school values(25,'sam',58)
+Error at Command Line : 1 Column : 13
+Error report -
+SQL Error: ORA-00947: not enough values
+00947. 00000 -  "not enough values"
+*Cause:    
+
+
+SQL> insert into school values(25,'sam',58,null,null);
+1 row inserted.
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        25 SAM                                    60 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+6 rows selected. 
+
+SQL> 
+
 Record deleted
 Record deleted
 
@@ -531,6 +648,138 @@ SQL> select * from backup_school;
 SQL> rollback;
 
 Rollback complete.
+
+SQL> 
+*
+*
+*
+*
+*
+*
+*
+*
+TRIGGER ON INSERT INTO SCHOOL. GIVE GRACE MARKS IF 58 OR 59 TO 60 AND UPPERCASE NAME.
+*
+*
+*
+*
+*
+*
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 11:29:59 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 11:30:02 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace trigger insert_school_backup before insert on school
+  2  for each row
+  3  begin
+  4  if ((:new.marks=58) OR (:new.marks=59)) then
+  5  :new.marks:=60;
+  6  end if;
+  7  :new.name:=upper(:new.name);
+  8  end;
+  9* /
+Trigger INSERT_SCHOOL_BACKUP compiled
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL
+---------- ------------------------------ ---------- --------------------
+POSTCODE  
+----------
+        23 smith                                  24 NULL                 
+NULL      
+
+        56 jones                                  68 NULL                 
+NULL      
+
+        45 bloggs                                 43 NULL                 
+NULL      
+
+        32 smith                                 100 NULL                 
+NULL      
+
+        21 peter                                  75 NULL                 
+NULL      
+
+
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+SQL> insert into school values(25,'sam',58);
+
+Error starting at line : 1 in command -
+insert into school values(25,'sam',58)
+Error at Command Line : 1 Column : 13
+Error report -
+SQL Error: ORA-00947: not enough values
+00947. 00000 -  "not enough values"
+*Cause:    
+
+
+SQL> insert into school values(25,'sam',58,null,null);
+1 row inserted.
+
+
+SQL> select * from school;
+
+     REGNO NAME                                MARKS EMAIL                POSTCODE  
+---------- ------------------------------ ---------- -------------------- ----------
+        23 smith                                  24 NULL                 NULL      
+        56 jones                                  68 NULL                 NULL      
+        45 bloggs                                 43 NULL                 NULL      
+        32 smith                                 100 NULL                 NULL      
+        25 SAM                                    60 NULL                 NULL      
+        21 peter                                  75 NULL                 NULL      
+
+6 rows selected. 
 
 SQL> 
 
