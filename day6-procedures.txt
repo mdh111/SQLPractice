@@ -1,0 +1,199 @@
+*
+*
+*
+*
+*
+TESCO_ENTRY PROCEDURE
+*
+*
+*
+*
+*
+*
+
+SQLcl: Release 4.2.0.16.153.2014 RC on Thu May 23 05:01:43 2019
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Username? (''?) hr
+Password? (**********?) ******
+Last Successful login time: Thu May 23 2019 05:01:49 -04:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 FOOD                
+         2 SPORTS              
+         3 ELECTRICAL          
+
+
+
+
+
+
+
+
+
+
+
+SQL> create or replace procedure tesco_entry(cat char, subcat char)
+  2  Is
+  3  NewCID number(3);
+  4  NewSID number(3);
+  5  Begin
+  6  Select NVL(Max(CID),0) into NewCID from category where description=cat;
+  7  IF(NewCID=0) THEN
+  8  Select NVL(MAX(CID),0)+1 into NewCID from category;
+  9  Insert into category values(NewCID, cat);
+ 10  END IF;
+ 11  Select NVL(Max(SID),0) into NewSID from subcategory where description=subcat;
+ 12  IF(NewSID=0) THEN
+ 13  Select NVL(MAX(SID),0)+1 into NewSID from subcategory; 
+ 14  insert into subcategory values(NewCID, NewSID, subcat);
+ 15  END IF;
+ 16  End;
+ 17* /
+Procedure TESCO_ENTRY compiled
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 FOOD                
+         2 SPORTS              
+         3 ELECTRICAL          
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1         10 DRINKS              
+         1         20 FAST FOOD           
+         2         30 CRICKET             
+
+SQL> delete category;
+
+Error starting at line : 1 in command -
+delete category
+Error report -
+ORA-02292: integrity constraint (HR.SYS_C0014578) violated - child record found
+
+SQL> delete subcategory;
+
+Error starting at line : 1 in command -
+delete subcategory
+Error report -
+ORA-02292: integrity constraint (HR.SYS_C0014580) violated - child record found
+
+SQL> delete sales;
+
+4 rows deleted.
+
+
+SQL> delete subcategory;
+
+Error starting at line : 1 in command -
+delete subcategory
+Error report -
+ORA-02292: integrity constraint (HR.SYS_C0014580) violated - child record found
+
+SQL> delete products;
+
+3 rows deleted.
+
+
+SQL> delete subcategory;
+
+3 rows deleted.
+
+
+SQL> delete category;
+
+3 rows deleted.
+
+SQL> call tesco_entry('food','drinks');
+
+Call completed.
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+
+
+SQL> call tesco_entry('food','fruit');
+Call completed.
+
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+
+
+SQL> call tesco_entry('sports','football');
+Call completed.
+
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+         2 sports              
+
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+         2          3 football            
+
+
+SQL> call tesco_entry('sports','cricket');
+Call completed.
+
+
+SQL> select * from subcategory;
+
+       CID        SID DESCRIPTION         
+---------- ---------- --------------------
+         1          1 drinks              
+         1          2 fruit               
+         2          3 football            
+         2          4 cricket             
+
+
+SQL> select * from category;
+
+       CID DESCRIPTION         
+---------- --------------------
+         1 food                
+         2 sports              
+
+SQL> 
+
